@@ -10,29 +10,6 @@
 
 <!-- FAVICON -->
 <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-32.png">
-<!-- Favicon standard -->
-<link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-48.png">
-
-<!-- iOS -->
-<link rel="apple-touch-icon" sizes="57x57" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-152.png">
-
-<!-- Android / Chrome -->
-<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-192.png">
-<link rel="icon" type="image/png" sizes="256x256" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-256.png">
-<link rel="icon" type="image/png" sizes="512x512" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-512.png">
-
-<!-- Favicon .ico pour IE et desktop -->
-<link rel="shortcut icon" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001.ico" type="image/x-icon">
-  
 
 <style>
 * { box-sizing:border-box; margin:0; padding:0; }
@@ -76,6 +53,32 @@ nav ul { display:flex; gap:1.5rem; list-style:none; font-size:0.85rem; text-tran
 .category-article h3 { font-family:'Libre Baskerville', serif; font-size:1.1rem; margin-bottom:0.3rem; }
 .category-article p { font-size:0.9rem; color:#444; }
 .category-article a { font-size:0.75rem; letter-spacing:1px; text-transform:uppercase; }
+/* Catégorie compacte et responsive */
+.category-header {
+  margin-bottom: 1rem;
+}
+
+.category-header h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(1.5rem, 4vw, 2.2rem); /* s’adapte à l’écran */
+  margin-bottom: 0.3rem;
+}
+
+.category-header .category-desc {
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  color: #555;
+  line-height: 1.3;
+  margin: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
 
 /* FULLSCREEN MENU */
 .fullscreen-menu{
@@ -139,6 +142,12 @@ nav ul { display:flex; gap:1.5rem; list-style:none; font-size:0.85rem; text-tran
   transition:color 0.2s ease;
 }
 #searchResults a:hover { color:#e63946; }
+body, p, h1, h2, h3, h4, h5, h6, a, span, li {
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem); /* taille minimale 0.8rem, maximale 1.2rem */
+  line-height: 1.4;
+  word-wrap: break-word; /* coupe les mots trop longs */
+}
+
 
 /* BREAKING NEWS */
 .breaking { padding:1rem 2rem; border-top:1px solid #ddd; border-bottom:1px solid #ddd; font-size:0.85rem; display:flex; gap:1rem; flex-wrap:wrap;}
@@ -152,6 +161,7 @@ nav ul { display:flex; gap:1.5rem; list-style:none; font-size:0.85rem; text-tran
   .hero-wrapper,.category-grid{grid-template-columns:1fr}
 }
 @media(min-width:769px){.fullscreen-menu{display:none}}
+
 </style>
 </head>
 <body>
@@ -207,12 +217,12 @@ nav ul { display:flex; gap:1.5rem; list-style:none; font-size:0.85rem; text-tran
 </section>
 
 <!-- CATEGORY GRID EXAMPLE -->
-<section class="category-page" id="category-politics">
+<section class="category-page" id="category-actu">
   <header class="category-header">
-    <h1>actu</h1>
+    <h1>Actualités</h1>
   </header>
   <div class="category-grid" id="category-grid"></div>
-</section>
+</section
 
 <!-- BREAKING NEWS -->
 <div class="breaking" id="breaking-list"></div>
@@ -327,6 +337,7 @@ loadSection("politics","#politics");
 loadCategory("politics","category-grid",24);
 loadBreaking();
 </script>
+
 
 <!-- FOOTER -->
 <footer style="background:#D3D3D3;color:#000000;padding:2rem;font-size:0.85rem;font-family:'Inter',sans-serif;">
