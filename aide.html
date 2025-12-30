@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aide — MAKMUS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#fff;
+  color:#111;
+  line-height:1.7;
+}
+
+header, footer{
+  background:#f5f5f5;
+  padding:1.2rem 2rem;
+}
+
+header img{
+  height:70px;
+}
+
+main{
+  max-width:900px;
+  margin:3rem auto;
+  padding:0 1.5rem;
+}
+
+h1{
+  font-family:'Libre Baskerville',serif;
+  font-size:2.4rem;
+  margin-bottom:0.8rem;
+}
+
+.intro{
+  font-size:1.05rem;
+  color:#333;
+  margin-bottom:2.5rem;
+  max-width:700px;
+}
+
+.accordion{
+  border:1px solid #ddd;
+  border-radius:6px;
+  overflow:hidden;
+}
+
+.accordion-button{
+  width:100%;
+  background:#fafafa;
+  border:none;
+  border-bottom:1px solid #ddd;
+  padding:1rem 1.2rem;
+  text-align:left;
+  font-size:1.05rem;
+  font-weight:500;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.accordion-button:hover{
+  background:#f0f0f0;
+}
+
+.accordion-button::after{
+  content:"+";
+  font-size:1.2rem;
+  transition:transform 0.3s ease;
+}
+
+.accordion-button.active::after{
+  transform:rotate(45deg);
+}
+
+.accordion-panel{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s ease, padding 0.3s ease;
+  padding:0 1.2rem;
+  background:#fff;
+}
+
+.accordion-panel p,
+.accordion-panel ul{
+  font-size:0.95rem;
+  color:#333;
+  margin:1rem 0;
+}
+
+.accordion-panel ul{
+  padding-left:1rem;
+}
+
+.note{
+  margin-top:3rem;
+  background:#f9f9f9;
+  border-left:4px solid #111;
+  padding:1.2rem 1.4rem;
+  font-size:0.95rem;
+}
+
+footer{
+  font-size:0.85rem;
+}
+
+footer div{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+  justify-content:space-between;
+}
+
+footer a{
+  text-decoration:none;
+  color:#000;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">
+    <img src="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001.png" alt="Makmus">
+  </a>
+</header>
+
+<main>
+  <h1>Aide</h1>
+
+  <p class="intro">
+    Cette page a pour objectif de vous accompagner dans l’utilisation de MAKMUS,
+    de répondre à vos questions et de faciliter votre expérience de lecture.
+  </p>
+
+  <div class="accordion">
+
+    <button class="accordion-button">Accéder aux contenus</button>
+    <div class="accordion-panel">
+      <p>
+        Les articles de MAKMUS sont accessibles directement depuis la page d’accueil
+        ou via les différentes catégories thématiques.
+      </p>
+      <p>
+        Certaines fonctionnalités avancées peuvent être réservées aux abonnés.
+      </p>
+    </div>
+
+    <button class="accordion-button">Problèmes techniques</button>
+    <div class="accordion-panel">
+      <p>
+        Si une page ne s’affiche pas correctement, essayez de :
+      </p>
+      <ul>
+        <li>Actualiser la page</li>
+        <li>Vider le cache de votre navigateur</li>
+        <li>Utiliser un navigateur à jour</li>
+      </ul>
+    </div>
+
+    <button class="accordion-button">Compte et abonnements</button>
+    <div class="accordion-panel">
+      <p>
+        Les abonnements permettent d’accéder à des contenus exclusifs,
+        des analyses approfondies et des services personnalisés.
+      </p>
+      <p>
+        Pour toute question liée à votre compte, consultez la page
+        <a href="abonnements.html">Abonnements</a>.
+      </p>
+    </div>
+
+    <button class="accordion-button">Droits et utilisation des contenus</button>
+    <div class="accordion-panel">
+      <p>
+        Les contenus publiés sur MAKMUS sont protégés par le droit d’auteur.
+        Toute reproduction sans autorisation est interdite.
+      </p>
+    </div>
+
+    <button class="accordion-button">Nous contacter</button>
+    <div class="accordion-panel">
+      <p>
+        Si vous ne trouvez pas réponse à votre question, vous pouvez nous contacter
+        via la page <a href="contact.html">Contactez-nous</a>.
+      </p>
+    </div>

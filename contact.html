@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contactez-nous — MAKMUS</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- FAVICON -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-32.png">
+<style>
+
+body { margin:0; font-family:'Inter',sans-serif; line-height:1.6; background:#fff; color:#111; }
+header, footer { background:#f5f5f5; padding:1rem 2rem; }
+header a, footer a { text-decoration:none; color:#000; }
+main { max-width:1200px; margin:2rem auto; padding:0 1rem; display:flex; flex-direction:column; align-items:center; text-align:center; }
+footer { font-size:0.85rem; }
+footer div { display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; }
+footer div a { margin-right:1rem; }
+form { display:flex; flex-direction:column; gap:1rem; max-width:400px; width:100%; }
+
+.accordion {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  max-width: 600px;
+  width:100%;
+  font-family: 'Inter', sans-serif;
+  margin:2rem auto;
+}
+
+.accordion-button {
+  background: #f9f9f9;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  padding: 1rem 1.2rem;
+  width: 100%;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #111;
+  transition: background 0.3s ease, color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-button:hover { background: #eaeaea; color: #222; }
+.accordion-button::after { content: '+'; font-size: 1.2rem; transition: transform 0.3s ease; }
+.accordion-button.active::after { transform: rotate(45deg); }
+
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  background: #fff;
+  padding: 0 1.2rem;
+}
+
+.accordion-panel p,
+.accordion-panel ul { margin: 0.8rem 0; font-size: 0.95rem; color: #333; }
+.accordion-panel ul { list-style: none; padding-left: 0; }
+.accordion-panel ul li { margin: 0.3rem 0; }
+.accordion-panel ul li a { text-decoration: none; color: #111; transition: color 0.2s ease; }
+.accordion-panel ul li a:hover { color: #e63946; }
+
+h1, h2, p { text-align:center; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <a href="index.html"><img src="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001.png" alt="Makmus" style="height:80px;"></a>
+  </div>
+</header>
+
+<main>
+  <h1>Contactez-nous</h1>
+  <p>Vous souhaitez entrer en contact avec notre équipe ? Vous pouvez nous envoyer un message via ce formulaire :</p>
+  <form>
+    <input type="text" placeholder="Nom" required style="padding:0.5rem;">
+    <input type="email" placeholder="Email" required style="padding:0.5rem;">
+    <textarea placeholder="Votre message" rows="5" style="padding:0.5rem;"></textarea>
+    <button type="submit" style="padding:0.5rem; cursor:pointer;">Envoyer</button>
+  </form>
+</main>
+
+<section>
+  <h2 style="font-family:'Libre Baskerville', serif; font-size:1.8rem; margin-bottom:1rem; border-bottom:2px solid #ccc; padding-bottom:0.5rem;">Autres coordonnées</h2>
+  <div class="accordion">
+    <button class="accordion-button">Téléphone</button>
+    <div class="accordion-panel"><p>+243 123 456 789</p></div>
+
+    <button class="accordion-button">Email</button>
+    <div class="accordion-panel"><p>contact@makmus.com</p></div>
+
+    <button class="accordion-button">Adresse</button>
+    <div class="accordion-panel"><p>123 Avenue de la Mémoire, Kinshasa, RDC</p></div>
+
+    <button class="accordion-button">Réseaux sociaux</button>
+    <div class="accordion-panel">
+      <ul>
+        <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+
+    <button class="accordion-button">WhatsApp</button>
+    <div class="accordion-panel"><p>+243 987 654 321</p></div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div><p>© 2025 La société du New York Times</p></div>
+    <div style="flex:3 1 600px;display:flex;flex-wrap:wrap;gap:1rem;">
+      <a href="contact.html">Contactez-nous</a>
+      <a href="accessibilite.html">Accessibilité</a>
+      <a href="travaillez-avec-nous.html">Travaille avec nous</a>
+      <a href="annoncer.html">Annoncer</a>
+      <a href="studio-marque.html">Studio de la marque</a>
+      <a href="politique-confidentialite.html">Politique de confidentialité</a>
+      <a href="politique-cookies.html">Politique de cookies</a>
+      <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+      <a href="conditions-vente.html">Conditions de vente</a>
+      <a href="plan-du-site.html">Plan du site</a>
+      <a href="international.html">International</a>
+      <a href="aide.html">Aide</a>
+      <a href="abonnements.html">Abonnements</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const accButtons = document.querySelectorAll(".accordion-button");
+accButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const panel = btn.nextElementSibling;
+    const isActive = btn.classList.contains("active");
+
+    document.querySelectorAll(".accordion-button").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".accordion-panel").forEach(p => p.style.maxHeight = null);
+
+    if(!isActive){
+      btn.classList.add("active");
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+});
+</script>
+
+</body>
+</html>

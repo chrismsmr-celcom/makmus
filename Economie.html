@@ -1,0 +1,256 @@
+<!-- Economie.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAKMUS — Politique</title>
+
+<!-- TYPO -->
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- FAVICON -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-32.png">
+
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Inter', sans-serif; background:#fff; color:#111; line-height:1.6; }
+a { color:inherit; text-decoration:none; }
+
+/* ================= HEADER ================= */
+header {
+  border-bottom:1px solid #ddd;
+  padding:1rem 2rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+}
+
+.logo img { height:40px; }
+
+nav ul {
+  display:flex;
+  gap:1.5rem;
+  list-style:none;
+  font-size:0.8rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.menu-toggle {
+  display:none;
+  font-size:1.8rem;
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+
+/* ================= DATE BAR ================= */
+.date-bar {
+  font-size:0.75rem;
+  padding:0.5rem 2rem;
+  border-bottom:1px solid #eee;
+  color:#555;
+}
+
+/* ================= CATEGORY ================= */
+.category-page { padding:2.5rem 2rem; }
+
+.category-header { margin-bottom:2rem; }
+
+.category-header h1 {
+  font-family:'Libre Baskerville', serif;
+  font-size:2.2rem;
+  margin-bottom:0.4rem;
+}
+
+.category-desc { font-size:0.95rem; color:#555; }
+
+.category-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:2rem;
+}
+
+.category-article img {
+  width:100%;
+  max-height:180px;
+  object-fit:cover;
+  margin-bottom:0.6rem;
+}
+
+.category-article h3 {
+  font-family:'Libre Baskerville', serif;
+  font-size:1.1rem;
+  margin-bottom:0.3rem;
+}
+
+.category-article p { font-size:0.9rem; color:#444; }
+
+.category-article a {
+  font-size:0.75rem;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+/* ================= FULLSCREEN MENU ================= */
+.fullscreen-menu {
+  position:fixed;
+  inset:0;
+  background:#fff;
+  z-index:9999;
+  display:flex;
+  flex-direction:column;
+  transform:translateY(-100%);
+  transition:transform .4s ease;
+}
+
+.fullscreen-menu.active { transform:translateY(0); }
+
+.menu-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1.5rem 2rem;
+  border-bottom:1px solid #ddd;
+}
+
+.menu-logo { height:38px; }
+
+.close-menu {
+  font-size:2rem;
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+
+.menu-links {
+  list-style:none;
+  margin-top:3rem;
+  width:100%;
+}
+
+.menu-links li {
+  text-align:center;
+  padding:1.2rem 0;
+  border-bottom:1px solid #e5e5e5;
+}
+
+.menu-links a {
+  font-family:'Libre Baskerville', serif;
+  font-size:1.9rem;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  nav { display:none; }
+  .menu-toggle { display:block; }
+  .category-grid { grid-template-columns:1fr; }
+}
+
+@media(min-width:769px){
+  .fullscreen-menu { display:none; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ===== FULLSCREEN MENU ===== -->
+<div class="fullscreen-menu" id="fullscreenMenu">
+  <div class="menu-top">
+    <a href="index.html">
+      <img src="https://i.postimg.cc/pLF5Wstw/1.png" alt="Makmus" class="menu-logo">
+    </a>
+    <button class="close-menu">✕</button>
+  </div>
+
+  <ul class="menu-links">
+       <ul><li><a href="index.html"><img src="https://i.postimg.cc/pLF5Wstw/1.png" alt="Makmus" class="menu-logo"></a></li>
+    <li><a href="politique.html">Politique</a></li>
+    <ul><li><a href="sport.html">Sport</a></li>
+    <ul><li><a href="musique.html">Musique</a></li>
+    <ul><li><a href="rdc.html">RDC</a></li>
+    <ul><li><a href="jeux.html">Jeux</a></li>
+  </ul>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <a href="index.html" class="logo">
+    <img src="https://i.postimg.cc/pLF5Wstw/1.png" alt="Makmus">
+  </a>
+
+  <button class="menu-toggle">☰</button>
+
+  <nav>
+    <ul><li><a href="index.html">Accueil</a></li>
+    <li><a href="politique.html">Politique</a></li>
+    <ul><li><a href="sport.html">Sport</a></li>
+    <ul><li><a href="musique.html">Musique</a></li>
+    <ul><li><a href="rdc.html">RDC</a></li>
+    <ul><li><a href="jeux.html">Jeux</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="date-bar" id="date"></div>
+
+<section class="category-page" id="category-economie">
+  <header class="category-header">
+    <h1>Économie</h1>
+    <p class="category-desc">Actualités économiques et financières locales et internationales.</p>
+  </header>
+  <div class="category-grid" id="grid-economie"></div>
+</section>
+<script>
+/* DATE */
+document.getElementById('date').textContent =
+  new Date().toLocaleDateString('fr-FR',{
+    weekday:'long',year:'numeric',month:'long',day:'numeric'
+  });
+
+/* MENU */
+const openBtn = document.querySelector('.menu-toggle');
+const closeBtn = document.querySelector('.close-menu');
+const menu = document.getElementById('fullscreenMenu');
+
+openBtn.addEventListener('click',()=>menu.classList.add('active'));
+closeBtn.addEventListener('click',()=>menu.classList.remove('active'));
+const API_KEY="pub_4e1227be068d43c7b03da109494a3907";
+const CACHE=2*60*60*1000;
+function setDate(){document.getElementById('date').textContent=new Date().toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});}setDate();
+async function fetchNews(key,url){
+  const cached=localStorage.getItem(key);
+  const time=localStorage.getItem(key+"_t");
+  if(cached && time && Date.now()-time<CACHE) return JSON.parse(cached);
+  try {
+    const res=await fetch(url);
+    const data=await res.json();
+    localStorage.setItem(key,JSON.stringify(data));
+    localStorage.setItem(key+"_t",Date.now());
+    return data;
+  } catch(e){
+    console.error('Erreur fetch:',e);
+    return { results: [] };
+  }
+}
+async function loadCategory(category,containerId,limit=24){
+  const data=await fetchNews(`cat_${category}`,`https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr&category=business`);
+  const grid=document.getElementById(containerId);
+  grid.innerHTML="";
+  if(Array.isArray(data.results)){
+    data.results.slice(0,limit).forEach(a=>{
+      if(!a.image_url || !a.title) return;
+      const el=document.createElement('article');
+      el.className='category-article';
+      el.innerHTML=`<img src="${a.image_url}" alt="${a.title}" loading="lazy"><h3>${a.title}</h3><p>${a.description||''}</p><a href="${a.link}" target="_blank">Lire la suite</a>`;
+      grid.appendChild(el);
+    });
+  }
+}
+loadCategory('business','grid-economie',24);
+</script>
+</body>
+</html>

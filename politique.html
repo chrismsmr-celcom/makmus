@@ -1,0 +1,358 @@
+<!-- politique.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAKMUS — Politique</title>
+
+<!-- TYPO -->
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- FAVICON -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-32.png">
+
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Inter', sans-serif; background:#fff; color:#111; line-height:1.6; }
+a { color:inherit; text-decoration:none; }
+
+/* ================= HEADER ================= */
+header {
+  border-bottom:1px solid #ddd;
+  padding:1rem 2rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+}
+
+.logo img { height:40px; }
+
+nav ul {
+  display:flex;
+  gap:1.5rem;
+  list-style:none;
+  font-size:0.8rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.menu-toggle {
+  display:none;
+  font-size:1.8rem;
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+
+/* ================= DATE BAR ================= */
+.date-bar {
+  font-size:0.75rem;
+  padding:0.5rem 2rem;
+  border-bottom:1px solid #eee;
+  color:#555;
+}
+
+/* ================= CATEGORY ================= */
+.category-page { padding:2.5rem 2rem; }
+
+.category-header { margin-bottom:2rem; }
+
+.category-header h1 {
+  font-family:'Libre Baskerville', serif;
+  font-size:2.2rem;
+  margin-bottom:0.4rem;
+}
+
+.category-desc { font-size:0.95rem; color:#555; }
+
+.category-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:2rem;
+}
+
+.category-article img {
+  width:100%;
+  max-height:180px;
+  object-fit:cover;
+  margin-bottom:0.6rem;
+}
+
+.category-article h3 {
+  font-family:'Libre Baskerville', serif;
+  font-size:1.1rem;
+  margin-bottom:0.3rem;
+}
+
+.category-article p { font-size:0.9rem; color:#444; }
+
+.category-article a {
+  font-size:0.75rem;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+/* ================= FULLSCREEN MENU ================= */
+.fullscreen-menu {
+  position:fixed;
+  inset:0;
+  background:#fff;
+  z-index:9999;
+  display:flex;
+  flex-direction:column;
+  transform:translateY(-100%);
+  transition:transform .4s ease;
+}
+
+.fullscreen-menu.active { transform:translateY(0); }
+
+.menu-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1.5rem 2rem;
+  border-bottom:1px solid #ddd;
+}
+
+.menu-logo { height:38px; }
+
+.close-menu {
+  font-size:2rem;
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+
+.menu-links {
+  list-style:none;
+  margin-top:3rem;
+  width:100%;
+}
+
+.menu-links li {
+  text-align:center;
+  padding:1.2rem 0;
+  border-bottom:1px solid #e5e5e5;
+}
+
+.menu-links a {
+  font-family:'Libre Baskerville', serif;
+  font-size:1.9rem;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  nav { display:none; }
+  .menu-toggle { display:block; }
+  .category-grid { grid-template-columns:1fr; }
+}
+
+@media(min-width:769px){
+  .fullscreen-menu { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== FULLSCREEN MENU ===== -->
+<div class="fullscreen-menu" id="fullscreenMenu">
+  <div class="menu-top">
+    <a href="index.html">
+      <img src="https://i.postimg.cc/pLF5Wstw/1.png" alt="Makmus" class="menu-logo">
+    </a>
+    <button class="close-menu">✕</button>
+  </div>
+
+  <ul class="menu-links">
+       <ul><li><a href="index.html"><img src="https://i.postimg.cc/pLF5Wstw/1.png" alt="Makmus" class="menu-logo"></a></li>
+    <ul><li><a href="economie.html">Économie</a></li>
+    <ul><li><a href="sport.html">Sport</a></li>
+    <ul><li><a href="musique.html">Musique</a></li>
+    <ul><li><a href="rdc.html">RDC</a></li>
+    <ul><li><a href="jeux.html">Jeux</a></li>
+  </ul>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <a href="index.html" class="logo">
+    <img src="https://i.postimg.cc/pLF5Wstw/1.png" alt="Makmus">
+  </a>
+
+  <button class="menu-toggle">☰</button>
+
+  <nav>
+    <ul><li><a href="index.html">Accueil</a></li>
+    <ul><li><a href="economie.html">Économie</a></li>
+    <ul><li><a href="sport.html">Sport</a></li>
+    <ul><li><a href="musique.html">Musique</a></li>
+    <ul><li><a href="rdc.html">RDC</a></li>
+    <ul><li><a href="jeux.html">Jeux</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="date-bar" id="date"></div>
+
+<!-- ===== CATEGORY ===== -->
+<section class="category-page">
+  <header class="category-header">
+    <h1>Politique</h1>
+    <p class="category-desc">Analyses, décisions et enjeux politiques en RDC et dans le monde.</p>
+  </header>
+  <div class="category-grid" id="category-grid"></div>
+</section>
+
+<script>
+/* DATE */
+document.getElementById('date').textContent =
+  new Date().toLocaleDateString('fr-FR',{
+    weekday:'long',year:'numeric',month:'long',day:'numeric'
+  });
+
+/* MENU */
+const openBtn = document.querySelector('.menu-toggle');
+const closeBtn = document.querySelector('.close-menu');
+const menu = document.getElementById('fullscreenMenu');
+
+openBtn.addEventListener('click',()=>menu.classList.add('active'));
+closeBtn.addEventListener('click',()=>menu.classList.remove('active'));
+
+const API_KEY = "pub_4e1227be068d43c7b03da109494a3907";
+const CACHE_DURATION = 2 * 60 * 60 * 1000; // 2 heures en millisecondes
+
+// Mettre la date actuelle
+function setDate() {
+  const dateEl = document.getElementById('date');
+  if(dateEl) {
+    dateEl.textContent = new Date().toLocaleDateString('fr-FR', {
+      weekday:'long', year:'numeric', month:'long', day:'numeric'
+    });
+  }
+}
+setDate();
+
+// FETCH avec cache intelligent
+async function fetchNewsWithCache(cacheKey, url) {
+  const cachedData = localStorage.getItem(cacheKey);
+  const cachedTime = localStorage.getItem(cacheKey + "_time");
+
+  if(cachedData && cachedTime && (Date.now() - cachedTime < CACHE_DURATION)) {
+    return JSON.parse(cachedData);
+  }
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    localStorage.setItem(cacheKey, JSON.stringify(data));
+    localStorage.setItem(cacheKey + "_time", Date.now());
+
+    return data;
+  } catch (error) {
+    console.error("Erreur API:", error);
+    return cachedData ? JSON.parse(cachedData) : { results: [] };
+  }
+}
+
+// CHARGEMENT HERO (Home page)
+async function loadHero() {
+  const data = await fetchNewsWithCache(
+    "hero",
+    `https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr`
+  );
+  const results = Array.isArray(data.results) ? data.results : [];
+  if(results.length === 0) return;
+
+  const hero = results[0];
+  const heroTitle = document.getElementById("hero-title");
+  const heroImg = document.getElementById("hero-img");
+  const heroDesc = document.getElementById("hero-desc");
+  const heroLink = document.getElementById("hero-link");
+  const heroSide = document.getElementById("hero-side");
+
+  if(heroTitle) heroTitle.textContent = hero.title || "";
+  if(heroImg) { 
+    heroImg.src = hero.image_url || ""; 
+    heroImg.alt = hero.title || "";
+  }
+  if(heroDesc) heroDesc.textContent = hero.description || "";
+  if(heroLink) heroLink.href = hero.link || "#";
+
+  if(heroSide) {
+    heroSide.innerHTML = "";
+    results.slice(1,4).forEach(a => {
+      const el = document.createElement("article");
+      el.innerHTML = `<h3>${a.title}</h3>`;
+      heroSide.appendChild(el);
+    });
+  }
+}
+
+// CHARGEMENT SECTION (ex: Politique, Sport, etc.)
+async function loadSection(category, containerSelector) {
+  const data = await fetchNewsWithCache(
+    category,
+    `https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr&category=${category}`
+  );
+  const results = Array.isArray(data.results) ? data.results : [];
+  if(results.length === 0) return;
+
+  const container = document.querySelector(containerSelector);
+  if(!container) return;
+
+  const mainArticle = container.querySelector(".main-article");
+  const sideList = container.querySelector(".side-list");
+
+  if(mainArticle) {
+    mainArticle.querySelector("img").src = results[0].image_url || "";
+    mainArticle.querySelector("img").alt = results[0].title || "";
+    mainArticle.querySelector("h3").textContent = results[0].title || "";
+    mainArticle.querySelector("p").textContent = results[0].description || "";
+    mainArticle.querySelector("a").href = results[0].link || "#";
+  }
+
+  if(sideList) {
+    sideList.innerHTML = "";
+    results.slice(1,4).forEach(a => {
+      const el = document.createElement("article");
+      el.innerHTML = `<h4>${a.title}</h4>`;
+      sideList.appendChild(el);
+    });
+  }
+}
+
+// CHARGEMENT CATEGORIE (grille)
+async function loadCategory(category, containerId, limit=24) {
+  const data = await fetchNewsWithCache(
+    `cat_${category}`,
+    `https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr&category=${category}`
+  );
+  const results = Array.isArray(data.results) ? data.results : [];
+  const grid = document.getElementById(containerId);
+  if(!grid) return;
+  grid.innerHTML = "";
+
+  results.slice(0, limit).forEach(article => {
+    if(!article.title || !article.image_url) return;
+    const el = document.createElement("article");
+    el.className = "category-article";
+    el.innerHTML = `
+      <img src="${article.image_url}" alt="${article.title}" loading="lazy">
+      <h3>${article.title}</h3>
+      <p>${article.description || ""}</p>
+      <a href="${article.link}" target="_blank">Lire la suite</a>
+    `;
+    grid.appendChild(el);
+  });
+}
+
+// EXÉCUTER LES CHARGEMENTS
+loadHero();
+loadSection("politics", "#politics");
+loadCategory("politics", "category-grid", 24);</script>
+
+</body>
+</html>

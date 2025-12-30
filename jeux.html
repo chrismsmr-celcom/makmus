@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAKMUS — Jeux</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-32.png">
+<style>
+/* RESET & BASE */
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family: 'Inter', sans-serif; background:#fefefe; color:#111; line-height:1.6; }
+a { color:inherit; text-decoration:none; }
+header, footer { background:#f5f5f5; padding:1rem 2rem; }
+nav ul { display:flex; gap:1.5rem; list-style:none; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; }
+.logo img { height:50px; }
+.date-bar { font-size:0.75rem; padding:0.5rem 2rem; border-bottom:1px solid #eee; color:#555; text-align:center; }
+
+/* CATEGORY PAGE */
+.category-page { padding:2rem; max-width:1200px; margin:0 auto; text-align:center; }
+.category-header h1 { font-family:'Libre Baskerville', serif; font-size:2rem; margin-bottom:0.5rem; }
+.category-header p { font-size:1rem; color:#555; margin-bottom:2rem; }
+
+/* ACCORDION */
+.accordion { margin-bottom:2rem; border-radius:6px; overflow:hidden; text-align:left; max-width:700px; margin:2rem auto; }
+.accordion button { width:100%; padding:1rem; background:#f0f0f0; border:none; cursor:pointer; font-weight:600; display:flex; justify-content:space-between; align-items:center; transition:0.3s; font-size:1.1rem; }
+.accordion button.active { background:#ddd; }
+.accordion button::after { content:'+'; font-size:1.3rem; transition:0.3s; }
+.accordion button.active::after { transform: rotate(45deg); }
+.panel { max-height:0; overflow:hidden; transition:max-height 0.4s ease; background:#fff; padding:0 1rem; }
+.panel p, .panel button { margin:0.5rem 0; }
+
+/* JEUX */
+#sudoku-grid, #crossword-grid { display:grid; gap:2px; justify-content:center; margin:1rem auto; }
+#sudoku-grid input, #crossword-grid input { width:40px; height:40px; text-align:center; font-weight:bold; font-size:1rem; border:1px solid #ccc; border-radius:4px; }
+#snakeCanvas { background:#111; display:block; margin:1rem auto; border-radius:8px; }
+#chessBoard { display:grid; grid-template-columns:repeat(8,50px); gap:0; width:400px; margin:1rem auto; border:2px solid #111; border-radius:6px; }
+.square { display:flex; align-items:center; justify-content:center; font-size:1.5rem; cursor:pointer; }
+#snakeScore, #crosswordResult, #sudoku-msg { font-weight:600; color:#e63946; }
+
+/* BUTTONS */
+button { padding:0.5rem 1rem; border:none; border-radius:5px; cursor:pointer; background:#111; color:#fff; transition:0.3s; }
+button:hover { background:#333; }
+
+/* RESPONSIVE */
+@media(max-width:768px){nav ul { flex-direction:column; gap:1rem; } #chessBoard { width:100%; grid-template-columns:repeat(8,12.5%); } #sudoku-grid, #crossword-grid { grid-template-columns:repeat(9,10vw); }}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo"><a href="index.html"><img src="https://i.postimg.cc/pLF5Wstw/1.png" alt="Makmus"></a></div>
+<nav>
+<ul>
+<li><a href="jeux.html">Jeux</a></li>
+<li><a href="rdc.html">RDC</a></li>
+<li><a href="economie.html">Économie</a></li>
+<li><a href="sport.html">Sport</a></li>
+<li><a href="musique.html">Musique</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="date-bar" id="date"></div>
+
+<section class="category-page">
+<header class="category-header">
+<h1>Jeux Makmus</h1>
+<p>Profitez de nos mini-jeux interactifs : Sudoku, Serpent, Mots croisés et Échecs.</p>
+</header>
+
+<!-- SUDOKU -->
+<div class="accordion">
+<button>Sudoku</button>
+<div class="panel">
+<div id="sudoku-grid"></div>
+<button onclick="generateSudoku()">Nouvelle grille</button>
+<button onclick="checkSudoku()">Vérifier</button>
+<p id="sudoku-msg"></p>
+</div>
+</div>
+
+<!-- SNAKE -->
+<div class="accordion">
+<button>Serpent</button>
+<div class="panel">
+<canvas id="snakeCanvas" width="400" height="400"></canvas>
+<p>Score : <span id="snakeScore">0</span></p>
+<button onclick="resetSnake()">Recommencer</button>
+</div>
+</div>
+
+<!-- MOTS CROISÉS -->
+<div class="accordion">
+<button>Mots croisés</button>
+<div class="panel">
+<div id="crossword-grid"></div>
+<p><button onclick="checkCrossword()">Vérifier</button> Résultat : <span id="crosswordResult"></span></p>
+</div>
+</div>
+
+<!-- ÉCHECS -->
+<div class="accordion">
+<button>Échecs</button>
+<div class="panel">
+<div id="chessBoard"></div>
+<button onclick="resetChess()">Réinitialiser</button>
+</div>
+</div>
+
+</section>
+
+<script>
+// DATE
+document.getElementById('date').textContent=new Date().toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+// ACCORDION
+const acc = document.querySelectorAll('.accordion button');
+acc.forEach(btn => {
+  btn.addEventListener('click', function(){
+    this.classList.toggle('active');
+    const panel=this.nextElementSibling;
+    if(panel.style.maxHeight){panel.style.maxHeight=null;}
+    else{panel.style.maxHeight=panel.scrollHeight+'px';}
+  });
+});
+
+// SUDOKU
+let sudokuGrid=[];
+function generateSudoku(){
+  const gridEl=document.getElementById('sudoku-grid');
+  gridEl.innerHTML='';
+  sudokuGrid=[];
+  for(let i=0;i<9;i++){
+    sudokuGrid[i]=[];
+    for(let j=0;j<9;j++){
+      const input=document.createElement('input');
+      input.maxLength=1;
+      input.dataset.row=i;
+      input.dataset.col=j;
+      input.value=Math.random()<0.3?Math.floor(Math.random()*9+1):'';
+      gridEl.appendChild(input);
+      sudokuGrid[i][j]=input.value;
+    }
+  }
+  document.getElementById('sudoku-msg').textContent='';
+}
+function checkSudoku(){
+  let valid=true;
+  document.querySelectorAll('#sudoku-grid input').forEach(input=>{
+    if(input.value<1 || input.value>9){ valid=false; }
+  });
+  document.getElementById('sudoku-msg').textContent=valid?'Grille valide!':'Il reste des cases vides ou incorrectes.';
+}
+
+// SNAKE
+const canvas=document.getElementById('snakeCanvas');
+const ctx=canvas.getContext('2d');
+let snake=[{x:8,y:8}], dx=1, dy=0, food={x:5,y:5}, block=20, score=0;
+function drawSnake(){
+  ctx.fillStyle='#111'; ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle='lime'; snake.forEach(s=>ctx.fillRect(s.x*block,s.y*block,block,block));
+  ctx.fillStyle='red'; ctx.fillRect(food.x*block,food.y*block,block,block);
+}
+function moveSnake(){
+  const head={x:snake[0].x+dx,y:snake[0].y+dy};
+  if(head.x<0||head.x>=canvas.width/block||head.y<0||head.y>=canvas.height/block||snake.some(s=>s.x===head.x && s.y===head.y)){
+    alert('Game Over! Score: '+score); resetSnake(); return;
+  }
+  snake.unshift(head);
+  if(head.x===food.x && head.y===food.y){score++; document.getElementById('snakeScore').textContent=score; food={x:Math.floor(Math.random()*20),y:Math.floor(Math.random()*20)};}
+  else{snake.pop();}
+  drawSnake();
+}
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowUp'){dx=0;dy=-1;} else if(e.key==='ArrowDown'){dx=0;dy=1;}
+  else if(e.key==='ArrowLeft'){dx=-1;dy=0;} else if(e.key==='ArrowRight'){dx=1;dy=0;}
+});
+function resetSnake(){snake=[{x:8,y:8}]; dx=1; dy=0; score=0; document.getElementById('snakeScore').textContent=0; drawSnake();}
+setInterval(moveSnake,200);
+drawSnake();
+
+// MOTS CROISÉS
+const crosswordAnswers=['H','O','P','E','S','M','U','S','I','C','C','O','D','E','S','R','E','S','T','S','Y','O','N','G','S'];
+const crosswordGrid=document.getElementById('crossword-grid');
+for(let i=0;i<25;i++){const input=document.createElement('input');crosswordGrid.appendChild(input);}
+function checkCrossword(){
+  let correct=true;
+  crosswordGrid.querySelectorAll('input').forEach((input,i)=>{ if(input.value.toUpperCase()!==crosswordAnswers[i]) correct=false; });
+  document.getElementById('crosswordResult').textContent=correct?'Toutes les réponses sont correctes!':'Certaines réponses sont incorrectes.';
+}
+
+// ÉCHECS
+const chessBoard=document.getElementById('chessBoard');
+const piecesInitial=['♜','♞','♝','♛','♚','♝','♞','♜','♟','♟','♟','♟','♟','♟','♟','♟','','','','','','','','','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '♙','♙','♙','♙','♙','♙','♙','♙','♖','♘','♗','♕','♔','♗','♘','♖'];
+function drawChess(){chessBoard.innerHTML=''; for(let i=0;i<64;i++){const square=document.createElement('div');square.className='square';square.style.backgroundColor=(Math.floor(i/8)+i)%2===0?'#f0d9b5':'#b58863'; square.textContent=piecesInitial[i]||''; chessBoard.appendChild(square);}}
+function resetChess(){drawChess();}
+drawChess();
+
+</script>
+</body>
+</html>
