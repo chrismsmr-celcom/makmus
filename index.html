@@ -184,6 +184,16 @@ body, p, h1, h2, h3, h4, h5, h6, a, span, li {
   .hero-wrapper,.category-grid{grid-template-columns:1fr}
 }
 @media(min-width:769px){.fullscreen-menu{display:none}}
+#video-pub {
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+#video-pub video {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+}
 
 </style>
 </head>
@@ -250,6 +260,13 @@ body, p, h1, h2, h3, h4, h5, h6, a, span, li {
 <!-- BREAKING NEWS -->
 <div class="breaking" id="breaking-list"></div>
 
+<section id="video-pub">
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="videos/pub.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la vidéo.
+  </video>
+</section>
+  
 <script>
 const API_KEY="pub_4e1227be068d43c7b03da109494a3907";
 const CACHE_DURATION=2*60*60*1000;
@@ -389,4 +406,5 @@ loadBreaking();
 
 </body>
 </html>
+
 
