@@ -153,9 +153,43 @@
          word-wrap: break-word; /* coupe les mots trop longs */
          }
          /* BREAKING NEWS */
-         .breaking { padding:1rem 2rem; border-top:1px solid #ddd; border-bottom:1px solid #ddd; font-size:0.85rem; display:flex; gap:1rem; flex-wrap:wrap;}
-         #breaking-list a { margin-right:1rem; color:#000;}
-         #breaking-list a:hover { text-decoration:underline; }
+.breaking {
+  padding: 1rem 2rem;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;       /* aligne verticalement les liens */
+  gap: 1rem;                 /* espace entre les liens */
+  justify-content: flex-start; /* alignement horizontal de départ */
+}
+
+#breaking-list a {
+  color: #000;
+  text-decoration: none;     /* supprime soulignement par défaut */
+  padding: 2px 6px;          /* léger padding pour l’espace */
+  border-radius: 4px;        /* coins arrondis */
+  transition: background 0.2s, color 0.2s;
+}
+
+#breaking-list a:hover {
+  text-decoration: none;
+  background: #f0f0f0;       /* survol léger */
+  color: #333;
+}
+
+/* RESPONSIVE */
+@media(max-width: 600px) {
+  .breaking {
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+  }
+  #breaking-list a {
+    padding: 2px 4px;
+    font-size: 0.8rem;
+  }
+}
          /* MOBILE */
          @media(max-width:768px){
          nav{display:none}
@@ -270,6 +304,8 @@
       </header>
       <div class="category-grid" id="category-grid"></div>
       </section
+      
+      
       <!-- BREAKING NEWS -->
       <div class="breaking" id="breaking-list"></div>
       <script>
@@ -405,6 +441,179 @@
             </div>
          </div>
       </footer>
+      
+      <!-- BOUTON FLOTTANT SHARE -->
+<div id="share-fab">
+  <img src="https://cdn-icons-png.flaticon.com/512/2990/2990295.png" alt="Partager">
+</div>
+
+<!-- MODAL PREMIUM -->
+<div id="share-modal">
+  <div class="share-content">
+    <span class="close" onclick="closeShare()">✕</span>
+    <h3>Partager cette page</h3>
+    <div class="share-buttons">
+      <a href="#" id="share-facebook" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+      <a href="#" id="share-twitter" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+      <a href="#" id="share-whatsapp" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
+      <a href="#" id="share-telegram" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"></a>
+      <a href="#" id="share-messenger" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Messenger"></a>
+      <a href="#" id="share-email" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email"></a>
+      <button id="copy-link">Copier le lien</button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* BOUTON FLOTTANT */
+#share-fab {
+  position: fixed;
+  right: 15px;
+  bottom: 10px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+#share-fab img {
+  width: 60%;
+  height: 60%;
+}
+#share-fab:hover {
+  transform: scale(1.1);
+}
+
+/* MODAL */
+#share-modal {
+  display: none;
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  backdrop-filter: blur(5px);
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  justify-content: center;
+  align-items: flex-start; /* slide down effect */
+  overflow-y: auto;
+}
+.share-content {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 15px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  margin-top: -300px; /* hidden above */
+  opacity: 0;
+  transform: translateY(-100px);
+  transition: all 0.5s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+#share-modal.active .share-content {
+  margin-top: 50px;
+  opacity: 1;
+  transform: translateY(0);
+}
+.share-content h3 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+.share-content .close {
+  position: absolute;
+  top: 12px; right: 18px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+.share-buttons a, .share-buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: #f0f0f0;
+  border-radius: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.share-buttons a img {
+  width: 28px;
+  height: 28px;
+}
+.share-buttons a:hover, .share-buttons button:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  background: #e0e0e0;
+}
+#copy-link {
+  font-size: 0.85rem;
+  font-weight: bold;
+  background: #007bff;
+  color: #fff;
+}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+  #share-fab {
+    width: 35px;
+    height: 35px;
+  }
+  .share-buttons a, .share-buttons button {
+    width: 45px;
+    height: 45px;
+  }
+  .share-buttons a img {
+    width: 24px;
+    height: 24px;
+  }
+}
+</style>
+
+<script>
+var pageUrl = encodeURIComponent(window.location.href);
+var pageTitle = encodeURIComponent(document.title);
+
+// Ouvrir / fermer modal avec slide down
+document.getElementById("share-fab").onclick = function() {
+  var modal = document.getElementById("share-modal");
+  modal.style.display = "flex";
+  setTimeout(function(){ modal.classList.add("active"); }, 10);
+}
+function closeShare() {
+  var modal = document.getElementById("share-modal");
+  modal.classList.remove("active");
+  setTimeout(function(){ modal.style.display = "none"; }, 500);
+}
+
+// Liens réseaux
+document.getElementById("share-facebook").href = "https://www.facebook.com/sharer/sharer.php?u="+pageUrl;
+document.getElementById("share-twitter").href = "https://twitter.com/intent/tweet?url="+pageUrl+"&text="+pageTitle;
+document.getElementById("share-whatsapp").href = "https://api.whatsapp.com/send?text="+pageTitle+" "+pageUrl;
+document.getElementById("share-telegram").href = "https://t.me/share/url?url="+pageUrl+"&text="+pageTitle;
+document.getElementById("share-messenger").href = "fb-messenger://share?link="+pageUrl;
+document.getElementById("share-email").href = "mailto:?subject="+pageTitle+"&body="+pageUrl;
+
+// Copier le lien
+document.getElementById("copy-link").onclick = function() {
+  navigator.clipboard.writeText(window.location.href).then(function(){
+    alert("Lien copié !");
+  });
+}
+</script>
+
+      
    </body>
 </html>
-
