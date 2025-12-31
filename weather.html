@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Météo Premium – Makmus</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+<style>
+body{font-family:Arial,sans-serif;margin:0;padding:0;transition:background 1s;}
+header{background:#222;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;}
+header .logo img{height:50px;}
+header nav ul{list-style:none;margin:0;padding:0;display:flex;gap:15px;}
+header nav ul li a{color:#fff;text-decoration:none;font-weight:bold;}
+header nav ul li a:hover{color:#FFD966;}
+.menu-toggle{display:none;cursor:pointer;font-size:1.5rem;color:#fff;}
+@media(max-width:768px){header nav ul{display:none;}.menu-toggle{display:block;}}
+.fullscreen-menu{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#222;color:#fff;z-index:1000;padding:50px;text-align:center;}
+.fullscreen-menu.active{display:block;}
+.fullscreen-menu ul{list-style:none;padding:0;margin:0;}
+.fullscreen-menu ul li{margin:20px 0;}
+.fullscreen-menu ul li a{color:#fff;text-decoration:none;font-size:1.5rem;}
+.close-menu{position:absolute;top:20px;right:20px;font-size:2rem;cursor:pointer;}
+
+#weather-search{margin:20px;text-align:center;}
+#weather-search input{padding:8px;width:200px;border-radius:5px;border:1px solid #ccc;}
+#weather-search button{padding:8px 15px;border:none;background:#222;color:#fff;border-radius:5px;cursor:pointer;margin-left:5px;}
+#weather-search button:hover{background:#555;}
+
+#map{width:90%;height:300px;margin:20px auto;border-radius:10px;overflow:hidden;border:1px solid #ccc;}
+#current-weather{display:flex;justify-content:center;align-items:center;margin:20px auto;padding:20px;background:#fff;border-radius:10px;gap:20px;max-width:600px;position:relative;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+#weather-animation{width:80px;height:80px;background-size:contain;background-repeat:no-repeat;animation:floatWeather 2s infinite alternate;}
+@keyframes floatWeather{0%{transform:translateY(0);}100%{transform:translateY(-10px);}}
+
+#forecast{margin:30px auto;max-width:95%;}
+.swiper-container{padding:20px 0;}
+.swiper-slide{background:#fff;border-radius:10px;padding:15px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+.swiper-slide img{width:60px;height:60px;}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <a href="index.html" class="logo">
+    <img src="https://i.postimg.cc/7ZWdGrQc/Screenshot_2025_12_24_21_32_24_removebg_preview.png" alt="Makmus">
+  </a>
+  <button class="menu-toggle">☰</button>
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="politique.html">Politique</a></li>
+      <li><a href="rdc.html">Économie</a></li>
+      <li><a href="sport.html">Sport</a></li>
+      <li><a href="musique.html">Musique</a></li>
+      <li><a href="jeux.html">Jeux</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- MENU FULLSCREEN -->
+<div id="fullscreenMenu" class="fullscreen-menu">
+  <span class="close-menu">✕</span>
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="politique.html">Politique</a></li>
+    <li><a href="rdc.html">Économie</a></li>
+    <li><a href="sport.html">Sport</a></li>
+    <li><a href="musique.html">Musique</a></li>
+    <li><a href="jeux.html">Jeux</a></li>
+  </ul>
+</div>
+
+<!-- ===== WEATHER ===== -->
+<div id="weather-search">
+  <input type="text" id="cityInput" placeholder="Entrez ville ou pays"/>
+  <button onclick="searchCity()">Rechercher</button>
+</div>
+
+<div id="map">
+  <iframe id="map-frame" src="https://www.openstreetmap.org/export/embed.html?bbox=12.0%2C-6.0%2C31.0%2C5.5&layer=mapnik" style="width:100%;height:100%;border:0;"></iframe>
+</div>
+
+<section id="current-weather">
+  <div id="weather-animation"></div>
+  <div id="weather-info">
+    <h2 id="city">Chargement...</h2>
+    <p id="description"></p>
+    <p id="temperature"></p>
+    <p id="wind"></p>
+    <p id="humidity"></p>
+  </div>
+</section>
+
+<section id="forecast">
+  <h2 style="text-align:center;">Prévisions 5 jours</h2>
+  <div class="swiper-container">
+    <div class="swiper-wrapper" id="forecast-wrapper"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+// MENU TOGGLE
+document.querySelector(".menu-toggle").onclick = function(){
+  document.getElementById("fullscreenMenu").classList.add("active");
+};
+document.querySelector(".close-menu").onclick = function(){
+  document.getElementById("fullscreenMenu").classList.remove("active");
+};
+
+// WEATHER VARIABLES
+var cityEl=document.getElementById('city');
+var descriptionEl=document.getElementById('description');
+var temperatureEl=document.getElementById('temperature');
+var windEl=document.getElementById('wind');
+var humidityEl=document.getElementById('humidity');
+var animationEl=document.getElementById('weather-animation');
+var forecastWrapper=document.getElementById('forecast-wrapper');
+var mapFrame=document.getElementById('map-frame');
+var swiperInstance=null;
+
+// RECHERCHE VILLE
+function searchCity(){
+  var city=document.getElementById('cityInput').value;
+  if(!city) return;
+  getCoordinates(city,function(coords){
+    if(!coords){alert('Ville non trouvée');return;}
+    mapFrame.src="https://www.openstreetmap.org/export/embed.html?bbox="+(coords.lon-1)+"%2C"+(coords.lat-1)+"%2C"+(parseFloat(coords.lon)+1)+"%2C"+(parseFloat(coords.lat)+1)+"&layer=mapnik";
+    getWeather(coords.lat,coords.lon,city);
+  });
+}
+
+// GET COORDINATES
+function getCoordinates(city,callback){
+  var xhr=new XMLHttpRequest();
+  xhr.open('GET','https://nominatim.openstreetmap.org/search?format=json&q='+encodeURIComponent(city));
+  xhr.onload=function(){
+    if(xhr.status===200){
+      var data=JSON.parse(xhr.responseText);
+      if(data.length>0) callback({lat:data[0].lat,lon:data[0].lon});
+      else callback(null);
+    }
+  };
+  xhr.send();
+}
+
+// GET WEATHER
+function getWeather(lat,lon,cityName){
+  var xhr=new XMLHttpRequest();
+  xhr.open('GET','https://api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lon+'&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum,wind_speed_10m,humidity_2m&timezone=Africa/Kinshasa');
+  xhr.onload=function(){
+    if(xhr.status===200){
+      var data=JSON.parse(xhr.responseText);
+      cityEl.textContent=cityName;
+      descriptionEl.textContent="Prévisions actuelles";
+      temperatureEl.textContent="Max: "+data.daily.temperature_2m_max[0]+"°C | Min: "+data.daily.temperature_2m_min[0]+"°C";
+      windEl.textContent="Vent: "+data.daily.wind_speed_10m[0]+" km/h";
+      humidityEl.textContent="Humidité: "+data.daily.humidity_2m[0]+" %";
+
+      // Fond dynamique
+      var code=data.daily.weathercode[0];
+      if(code===0) document.body.style.background="#FFD966";
+      else if(code>=1 && code<=3) document.body.style.background="#B0C4DE";
+      else document.body.style.background="#A4B0BE";
+
+      // Animation icône
+      var iconUrl="";
+      if(code===0) iconUrl="https://img.icons8.com/ios/100/000000/sun--v1.png";
+      else if(code>=1 && code<=3) iconUrl="https://img.icons8.com/ios/100/000000/partly-cloudy-day.png";
+      else iconUrl="https://img.icons8.com/ios/100/000000/rain.png";
+      animationEl.style.backgroundImage="url('"+iconUrl+"')";
+
+      // Prévisions swiper
+      forecastWrapper.innerHTML="";
+      for(var i=0;i<5;i++){
+        var slide=document.createElement("div");
+        slide.className="swiper-slide";
+        var codeDay=data.daily.weathercode[i];
+        var iconDay="";
+        if(codeDay===0) iconDay="https://img.icons8.com/ios/100/000000/sun--v1.png";
+        else if(codeDay>=1 && codeDay<=3) iconDay="https://img.icons8.com/ios/100/000000/partly-cloudy-day.png";
+        else iconDay="https://img.icons8.com/ios/100/000000/rain.png";
+        slide.innerHTML="<h3>"+data.daily.time[i]+"</h3>"+
+                        "<img src='"+iconDay+"'>"+
+                        "<p>Max: "+data.daily.temperature_2m_max[i]+"°C</p>"+
+                        "<p>Min: "+data.daily.temperature_2m_min[i]+"°C</p>"+
+                        "<p>Précip: "+data.daily.precipitation_sum[i]+" mm</p>"+
+                        "<p>Vent: "+data.daily.wind_speed_10m[i]+" km/h</p>"+
+                        "<p>Humidité: "+data.daily.humidity_2m[i]+" %</p>";
+        forecastWrapper.appendChild(slide);
+      }
+
+      if(swiperInstance) swiperInstance.destroy(true,true);
+      swiperInstance=new Swiper('.swiper-container',{
+        slidesPerView:1,spaceBetween:20,loop:true,
+        navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'},
+        pagination:{el:'.swiper-pagination',clickable:true},
+        breakpoints:{640:{slidesPerView:1},768:{slidesPerView:2},1024:{slidesPerView:3}}
+      });
+    }
+  };
+  xhr.send();
+}
+
+// RDC par défaut
+getWeather(-4.325,15.322,"Kinshasa");
+</script>
+
+</body>
+</html>
