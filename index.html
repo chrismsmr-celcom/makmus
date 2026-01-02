@@ -12,7 +12,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>MAKMUS — Mémoire & Vérité</title>
       <!-- TYPO -->
-      <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?
+family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
       <!-- FAVICON -->
       <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-32.png">
       <!-- Favicon standard -->
@@ -245,6 +246,124 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
          text-align: center;
          font-weight: 500;
          }
+
+
+/* DISCLAIMER */
+.disclaimer {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  color: #666;
+  text-align: center;
+  padding: 6px 0;
+}
+
+
+.bottom-disclaimer {
+  margin-top: 16px;
+  border-top: 1px solid #ccc;
+}
+
+/* CAROUSEL */
+.lifestyle-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lifestyle-carousel {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.lifestyle-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* CARTES */
+.lifestyle-card {
+  position: relative;
+  min-width: 220px;
+  height: 300px;
+  overflow: hidden;
+  scroll-snap-align: center;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease;
+}
+
+.lifestyle-card:hover {
+  transform: scale(1.05);
+}
+
+.lifestyle-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lifestyle-card .overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+  color: #fff;
+}
+
+.lifestyle-card h3 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin-bottom: 0.3rem;
+}
+
+.badge {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+  background: rgba(255,255,255,0.85);
+  color: #000;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+/* FLÈCHES */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  color: #fff;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-btn.prev { left: 20px; }
+.carousel-btn.next { right: 20px; }
+
+.lifestyle-carousel-wrapper:hover .carousel-btn {
+  opacity: 1;
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  .lifestyle-carousel {
+    gap: 24px;
+    justify-content: center;
+    overflow-x: visible;
+  }
+
+  .lifestyle-card {
+    min-width: 300px;
+    height: 220px;
+  }
+}
       </style>
    </head>
    <body>
@@ -317,10 +436,68 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </header>
       <div class="category-grid" id="category-grid"></div>
       </section
+
+
+      <section class="category-page" id="category-actu">
+      <header class="category-header">
+         <h1>Lifestyle & bien-être</h1>
+      </header>
+      <div class="category-grid" id="category-grid"></div>
+
+  <p class="disclaimer top-disclaimer">
+  </p>
+
+  <div class="lifestyle-carousel-wrapper">
+    <button class="carousel-btn prev"><img width="26" height="26" src="https://img.icons8.com/metro/26/1A1A1A/back.png" alt="back"/></button>
+
+    <div class="lifestyle-carousel">
+      <!-- Carte 1 -->
+      <a href="lifestyle-sante-mentale.html" class="lifestyle-card">
+        <img src="https://plus.unsplash.com/premium_vector-1729252566432-f498060ce597?w=1800.png" alt="Santé mentale">
+        <div class="overlay">
+          <span class="badge">Conseils d’experts</span>
+          <h3>Santé mentale</h3>
+        </div>
+      </a>
+      <!-- Carte 2 -->
+      <a href="lifestyle-relaxation.html" class="lifestyle-card">
+        <img src="https://plus.unsplash.com/premium_vector-1682300543534-e9cd1fb8cc92?w=1800.png" alt="Relaxation">
+        <div class="overlay">
+          <span class="badge">Bien-être</span>
+          <h3>Relaxation</h3>
+        </div>
+      </a>
+      <!-- Carte 3 -->
+      <a href="lifestyle-sport.html" class="lifestyle-card">
+        <img src="https://plus.unsplash.com/premium_vector-1712741923360-25639b9732de?w=1800.png" alt="Sport">
+        <div class="overlay">
+          <span class="badge">Santé & forme</span>
+          <h3>Sport</h3>
+        </div>
+      </a>
+      <!-- Carte 4 -->
+      <a href="lifestyle-nutrition.html" class="lifestyle-card">
+        <img src="https://plus.unsplash.com/premium_vector-1737041400403-d2deca76c460?w=1800.png" alt="Nutrition">
+        <div class="overlay">
+          <span class="badge">Sources fiables</span>
+          <h3>Nutrition</h3>
+        </div>
+      </a>
+    </div>
       
+
+    <button class="carousel-btn next"><img width="26" height="26" src="https://img.icons8.com/metro/26/1A1A1A/forward.png" alt="forward"/></button>
+  </div>
+
+  <p class="disclaimer bottom-disclaimer">
+    Contenus informatifs – ne remplacent pas l’avis d’un professionnel.
+  </p>
+</section>
+          
       
       <!-- BREAKING NEWS -->
       <div class="breaking" id="breaking-list"></div>
+       
       <script>
          const API_KEY="pub_4e1227be068d43c7b03da109494a3907";
          const CACHE_DURATION=2*60*60*1000;
@@ -627,7 +804,26 @@ document.getElementById("copy-link").onclick = function() {
 }
 </script>
 
-      
+<script>
+const carousel = document.querySelector('.lifestyle-carousel');
+const prevBtn = document.querySelector('.carousel-btn.prev');
+const nextBtn = document.querySelector('.carousel-btn.next');
+
+function scrollCarousel(direction) {
+  const card = carousel.querySelector('.lifestyle-card');
+  if (!card) return;
+  const gap = parseInt(getComputedStyle(carousel).gap) || 24;
+  const cardWidth = card.offsetWidth + gap;
+
+  carousel.scrollBy({
+    left: direction === 'next' ? cardWidth : -cardWidth,
+    behavior: 'smooth'
+  });
+}
+
+nextBtn.addEventListener('click', () => scrollCarousel('next'));
+prevBtn.addEventListener('click', () => scrollCarousel('prev'));
+</script>
+       
    </body>
 </html>
-
