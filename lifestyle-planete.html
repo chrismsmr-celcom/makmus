@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Planète – Conseils écologiques – Makmus</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- FAVICON -->
+      <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-32.png">
+      <!-- Favicon standard -->
+      <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-16.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-32.png">
+      <link rel="icon" type="image/png" sizes="48x48" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-48.png">
+      <!-- iOS -->
+      <link rel="apple-touch-icon" sizes="57x57" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-57.png">
+      <link rel="apple-touch-icon" sizes="60x60" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-60.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-72.png">
+      <link rel="apple-touch-icon" sizes="76x76" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-76.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-114.png">
+      <link rel="apple-touch-icon" sizes="120x120" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-120.png">
+      <link rel="apple-touch-icon" sizes="144x144" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-144.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-152.png">
+      <!-- Android / Chrome -->
+      <link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-192.png">
+      <link rel="icon" type="image/png" sizes="256x256" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-256.png">
+      <link rel="icon" type="image/png" sizes="512x512" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-512.png">
+      <!-- Favicon .ico pour IE et desktop -->
+      <link rel="shortcut icon" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001.ico" type="image/x-icon">
+
+<style>
+body { font-family:'Inter',sans-serif; background:#fff; color:#111; margin:0; padding:0; line-height:1.6; }
+header, footer { padding:1rem 2rem; background:#f8f8f8; }
+main { max-width:900px; margin:auto; padding:2rem; }
+h1,h2,h3 { font-family:'Libre Baskerville', serif; }
+h1 { font-size:2.4rem; margin-bottom:0.5rem; }
+h2 { font-size:1.6rem; margin-top:2rem; margin-bottom:0.5rem; }
+h3 { font-size:1.2rem; margin-bottom:0.5rem; }
+p, ul { margin-bottom:1rem; }
+ul { padding-left:1.2rem; }
+.byline { color:#555; font-size:0.9rem; margin-bottom:1rem; }
+.quote { font-style:italic; color:#444; border-left:3px solid #ccc; padding-left:1rem; margin:1.2rem 0; }
+.disclaimer { font-size:0.85rem; color:#666; margin-top:2rem; text-align:center; }
+.card-img { width:100%; height:auto; border-radius:8px; margin-bottom:1rem; }
+header {
+  padding: 0.5rem 2rem; /* réduit la hauteur verticale */
+  background: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+}
+
+header h2 {
+  font-size: 1rem; /* un peu plus petit pour le titre */
+  margin: 0;
+}
+.article-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 16px 0; /* espace entre byline et image */
+}
+.article-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 16px 0; /* espace entre byline et image */
+}
+
+.action-btn {
+  background: #f0f0f0;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px; /* espace entre icône et texte */
+}
+
+.action-btn:hover {
+  background: #e0e0e0;
+  transform: scale(1.05);
+}
+
+/* Spécifique pour le bouton commenter pour le rendre un peu plus large */
+.action-btn.comment {
+  padding: 6px 14px; /* plus large pour texte + icône */
+  font-weight: 500;
+}
+.byline {
+  color:#555;
+  font-size:0.9rem;
+  margin-bottom:1rem;
+  display: flex;
+  align-items: center; /* centre verticalement l’icône et le texte */
+  gap: 6px; /* espace entre l’icône et le texte */
+}
+
+.byline-icon {
+  width:20px;  /* taille adaptée pour être discrète */
+  height:20px;
+  object-fit: contain;
+}
+header {
+  padding: 0.5rem 2rem; /* header compact */
+  background: #f8f8f8;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+header h2 {
+  font-size: 1rem;
+  margin: 0;
+  flex-grow: 1; /* prend tout l’espace restant */
+}
+
+.back-btn {
+  background: #f0f0f0;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.back-btn:hover {
+  background: #e0e0e0;
+  transform: scale(1.1);
+}
+</style>
+</head>
+<body>
+
+<header>
+ <button class="back-btn" title="Retour"><img width="10" height="10" src="https://img.icons8.com/ios-filled/50/1A1A1A/back.png" alt="back"/> <!-- flèche gauche -->
+  </button>
+ <h2>Makmus – Planète & Écologie</h2>
+</header>
+
+<main>
+<h1>Agir pour la planète : gestes simples au quotidien</h1>
+
+<article>
+<p class="byline">
+  <img src="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-57.png" 
+       alt="Makmus" class="byline-icon"> Par la rédaction Makmus</p>
+
+<div class="article-actions">
+  <button class="action-btn share" title="Partager"><img width="24" height="24" src="https://img.icons8.com/android/24/1A1A1A/forward-arrow.png" alt="forward-arrow"/></button>
+  <button class="action-btn bookmark" title="Enregistrer"><img width="24" height="24" src="https://img.icons8.com/sf-black-filled/64/1A1A1A/bookmark-ribbon.png" alt="bookmark-ribbon"/></button>
+  <button class="action-btn comment" title="Commenter"><img width="24" height="24" src="https://img.icons8.com/ios-filled/50/1A1A1A/comments.png" alt="comments"/>commentaire</button>
+</div> 
+
+<img src="https://pixabay.com/get/gb206f6b0b5f7028e8f1a3a4572c61efaf1d62d70001df4f80fdf794db5425f167541272319ede00af8d4a7a3a88063a8142153450a5bc95695b84c26cba45f4e_1920.png" alt="Planète" class="card-img">
+
+<p>La protection de notre planète commence par des gestes simples à la maison et dans nos habitudes quotidiennes. Chacun peut contribuer à réduire son empreinte écologique.</p>
+
+<h2>Conseils pratiques</h2>
+<ul>
+<li>Réduire sa consommation de plastique et privilégier les alternatives durables</li>
+<li>Économiser l’eau et l’énergie</li>
+<li>Favoriser les transports doux : marche, vélo, transports en commun</li>
+<li>Recycler et composter les déchets organiques</li>
+<li>Choisir des produits locaux et de saison</li>
+</ul>
+
+<h2>Actions collectives</h2>
+<ul>
+<li>Participer à des clean-ups et initiatives locales</li>
+<li>Soutenir des associations environnementales</li>
+<li>Informer et sensibiliser son entourage</li>
+</ul>
+
+<h2>Ressources utiles</h2>
+<ul>
+<li><a href="https://www.wwf.fr/" target="_blank">WWF France</a></li>
+<li><a href="https://www.greenpeace.org/france/" target="_blank">Greenpeace France</a></li>
+</ul>
+
+<p class="disclaimer">Cet article est informatif et ne remplace pas l’avis d’un professionnel.</p>
+</article>
+</main>
+
+<footer style="background:#f8f8f8;color:#000;padding:2rem;font-size:0.55rem;font-family:'Inter',sans-serif;">
+<div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;">
+<div style="flex:1 1 200px;"><p>© 2025 La société makem media</p></div>
+<div style="flex:3 1 600px;display:flex;flex-wrap:wrap;gap:1rem;">
+<a href="contact.html" style="color:#000;">Contactez-nous</a>
+<a href="accessibilite.html" style="color:#000;">Accessibilité</a>
+<a href="travaillez-avec-nous.html" style="color:#000;">Travaille avec nous</a>
+<a href="annoncer.html" style="color:#000;">Annoncer</a>
+<a href="studio-marque.html" style="color:#000;">Studio de la marque</a>
+<a href="politique-confidentialite.html" style="color:#000;">Politique de confidentialité</a>
+<a href="politique-cookies.html" style="color:#000;">Politique de cookies</a>
+<a href="conditions-utilisation.html" style="color:#000;">Conditions d'utilisation</a>
+<a href="conditions-vente.html" style="color:#000;">Conditions de vente</a>
+<a href="plan-du-site.html" style="color:#000;">Plan du site</a>
+<a href="international.html" style="color:#000;">International</a>
+<a href="aide.html" style="color:#000;">Aide</a>
+<a href="abonnements.html" style="color:#000;">Abonnements</a>
+</div>
+</div>
+</footer>
+
+<script>
+document.querySelector('.back-btn').addEventListener('click', function(){ window.history.back(); });
+
+document.querySelector('.action-btn.share').addEventListener('click', function(){
+  var url = window.location.href;
+  if(navigator.share){ navigator.share({title:document.title,url:url}).catch(function(){ }); }
+  else{ navigator.clipboard.writeText(url).then(function(){ alert('Lien copié !'); }); }
+});
+
+document.querySelector('.action-btn.bookmark').addEventListener('click', function(){
+  var bookmarks = JSON.parse(localStorage.getItem('makmusBookmarks')||'[]');
+  var page={title:document.title,url:window.location.href};
+  if(!bookmarks.find(function(b){return b.url===page.url;})){ bookmarks.push(page); localStorage.setItem('makmusBookmarks',JSON.stringify(bookmarks)); alert('Page enregistrée !'); }
+  else alert('Cette page est déjà enregistrée.');
+});
+
+document.querySelector('.action-btn.comment').addEventListener('click', function(){
+  var comment=prompt("Écrire un commentaire :");
+  if(comment && comment.trim()!==""){ var comments=JSON.parse(localStorage.getItem('makmusComments')||'[]'); comments.push({page:window.location.href,text:comment}); localStorage.setItem('makmusComments',JSON.stringify(comments)); alert('Merci pour votre commentaire !'); }
+});
+</script>
+
+</body>
+</html>
