@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nutrition & Bien-être – Manger sain pour mieux vivre – Makmus</title>
+<link href="https://fonts.googleapis.com/css2?
+family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- FAVICON -->
+      <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-32.png">
+      <!-- Favicon standard -->
+      <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-16.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-32.png">
+      <link rel="icon" type="image/png" sizes="48x48" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-48.png">
+      <!-- iOS -->
+      <link rel="apple-touch-icon" sizes="57x57" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-57.png">
+      <link rel="apple-touch-icon" sizes="60x60" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-60.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-72.png">
+      <link rel="apple-touch-icon" sizes="76x76" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-76.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-114.png">
+      <link rel="apple-touch-icon" sizes="120x120" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-120.png">
+      <link rel="apple-touch-icon" sizes="144x144" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-144.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-152.png">
+      <!-- Android / Chrome -->
+      <link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-192.png">
+      <link rel="icon" type="image/png" sizes="256x256" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-256.png">
+      <link rel="icon" type="image/png" sizes="512x512" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-512.png">
+      <!-- Favicon .ico pour IE et desktop -->
+      <link rel="shortcut icon" href="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001.ico" type="image/x-icon">
+
+<style>
+body { font-family:'Inter',sans-serif; background:#fff; color:#111; margin:0; padding:0; line-height:1.6; }
+header, footer { padding:1rem 2rem; background:#f8f8f8; }
+main { max-width:900px; margin:auto; padding:2rem; }
+h1,h2,h3 { font-family:'Libre Baskerville', serif; }
+h1 { font-size:2.4rem; margin-bottom:0.5rem; }
+h2 { font-size:1.6rem; margin-top:2rem; margin-bottom:0.5rem; }
+h3 { font-size:1.2rem; margin-bottom:0.5rem; }
+p, ul { margin-bottom:1rem; }
+ul { padding-left:1.2rem; }
+.byline { color:#555; font-size:0.9rem; margin-bottom:1rem; }
+.quote { font-style:italic; color:#444; border-left:3px solid #ccc; padding-left:1rem; margin:1.2rem 0; }
+.disclaimer { font-size:0.85rem; color:#666; margin-top:2rem; text-align:center; }
+.card-img { width:100%; height:auto; border-radius:8px; margin-bottom:1rem; }
+header {
+  padding: 0.5rem 2rem; /* réduit la hauteur verticale */
+  background: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+}
+
+header h2 {
+  font-size: 1rem; /* un peu plus petit pour le titre */
+  margin: 0;
+}
+.article-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 16px 0; /* espace entre byline et image */
+}
+.article-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 16px 0; /* espace entre byline et image */
+}
+
+.action-btn {
+  background: #f0f0f0;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px; /* espace entre icône et texte */
+}
+
+.action-btn:hover {
+  background: #e0e0e0;
+  transform: scale(1.05);
+}
+
+/* Spécifique pour le bouton commenter pour le rendre un peu plus large */
+.action-btn.comment {
+  padding: 6px 14px; /* plus large pour texte + icône */
+  font-weight: 500;
+}
+.byline {
+  color:#555;
+  font-size:0.9rem;
+  margin-bottom:1rem;
+  display: flex;
+  align-items: center; /* centre verticalement l’icône et le texte */
+  gap: 6px; /* espace entre l’icône et le texte */
+}
+
+.byline-icon {
+  width:20px;  /* taille adaptée pour être discrète */
+  height:20px;
+  object-fit: contain;
+}
+header {
+  padding: 0.5rem 2rem; /* header compact */
+  background: #f8f8f8;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+header h2 {
+  font-size: 1rem;
+  margin: 0;
+  flex-grow: 1; /* prend tout l’espace restant */
+}
+
+.related-articles {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  border-top: 1px solid #ccc;
+}
+.related-articles h2 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+/* Reprend le style carousel de la home page */
+.lifestyle-carousel-wrapper { position: relative; }
+.lifestyle-carousel {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.lifestyle-carousel::-webkit-scrollbar { display: none; }
+
+/* CARTES */
+.lifestyle-card {
+  position: relative;
+  min-width: 220px;
+  height: 220px;
+  overflow: hidden;
+  scroll-snap-align: center;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease;
+}
+
+.lifestyle-card:hover {
+  transform: scale(1.05);
+}
+
+.lifestyle-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lifestyle-card .overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+  color: #fff;
+}
+
+.lifestyle-card h3 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin-bottom: 0.3rem;
+}
+
+.badge {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+  background: rgba(255,255,255,0.85);
+  color: #000;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+/* Hover effet */
+.lifestyle-card:hover {
+  transform: scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<header>
+ <button class="back-btn" title="Retour"><img width="10" height="10" src="https://img.icons8.com/ios-filled/50/1A1A1A/back.png" alt="back"/> <!-- flèche gauche -->
+  </button>
+<h2>Makmus – Lifestyle & Bien-être</h2>
+</header>
+
+<main>
+<article>
+<h1>Nutrition & Bien-être : manger sain pour mieux vivre</h1>
+<p class="byline">
+  <img src="https://i.postimg.cc/x88LbhZp/2-20251224-213424-0001-57.png" 
+       alt="Makmus" class="byline-icon"> Par la rédaction Makmus</p>
+<div class="article-actions">
+  <button class="action-btn share" title="Partager"><img width="24" height="24" src="https://img.icons8.com/android/24/1A1A1A/forward-arrow.png" alt="forward-arrow"/></button>
+  <button class="action-btn bookmark" title="Enregistrer"><img width="24" height="24" src="https://img.icons8.com/sf-black-filled/64/1A1A1A/bookmark-ribbon.png" alt="bookmark-ribbon"/></button>
+  <button class="action-btn comment" title="Commenter"><img width="24" height="24" src="https://img.icons8.com/ios-filled/50/1A1A1A/comments.png" alt="comments"/>commentaire</button>
+</div> 
+
+<img src="https://cdn.pixabay.com/photo/2018/07/03/03/48/avocados-3513048_1280.jpg" alt="Nutrition et bien-être" class="card-img">
+
+<p>
+Une alimentation équilibrée est la clé d’une vie saine. Elle influence l’énergie, l’humeur, le sommeil et la santé à long terme. Adopter de bonnes habitudes alimentaires peut améliorer votre bien-être général.
+</p>
+
+<h2>Pourquoi bien se nourrir ?</h2>
+<p>
+Les aliments que nous consommons fournissent l’énergie nécessaire au corps et aux fonctions cérébrales. Une alimentation riche en nutriments favorise l’immunité, la concentration et prévient certaines maladies chroniques.
+</p>
+
+<blockquote class="quote">
+« Manger sain, c’est investir dans sa santé sur le long terme » — nutritionnistes experts.
+</blockquote>
+
+<h2>Aliments à privilégier</h2>
+<ul>
+<li>Fruits et légumes frais, riches en vitamines et fibres.</li>
+<li>Protéines maigres : poisson, volaille, légumineuses.</li>
+<li>Oméga‑3 : graines de lin, noix, poissons gras.</li>
+<li>Hydratation suffisante : 1,5 à 2 litres d’eau par jour.</li>
+<li>Produits complets : céréales, riz complet, pain complet.</li>
+</ul>
+
+<h2>Aliments à limiter</h2>
+<ul>
+<li>Sucres raffinés et boissons sucrées.</li>
+<li>Produits ultra-transformés.</li>
+<li>Excès de caféine et d’alcool.</li>
+<li>Fritures et graisses saturées en excès.</li>
+</ul>
+
+<h2>Conseils pratiques</h2>
+<ul>
+<li>Planifier ses repas pour éviter le grignotage.</li>
+<li>Préparer des snacks sains pour les envies soudaines.</li>
+<li>Intégrer progressivement les changements alimentaires.</li>
+<li>Combiner alimentation saine avec activité physique régulière.</li>
+</ul>
+
+<h2>Ressources utiles</h2>
+<ul>
+<li><a href="https://www.who.int/fr/news-room/fact-sheets/detail/healthy-diet" target="_blank">OMS – Guide alimentation saine</a></li>
+<li><a href="https://www.healthline.com/nutrition" target="_blank">Healthline – Nutrition et conseils</a></li>
+<li><a href="https://www.eatforhealth.gov.au/" target="_blank">Eat For Health – Guide australien de nutrition</a></li>
+</ul>
+
+<p class="disclaimer">
+Cet article est informatif et ne remplace pas une consultation médicale ou diététique professionnelle.
+</p>
+
+</article>
+</main>
+<section class="related-articles">
+  <h2>Lire aussi</h2>
+
+  <div class="lifestyle-carousel-wrapper">
+    <div class="lifestyle-carousel">
+      <!-- Carte 5 : Animaux de compagnie -->
+      <a href="lifestyle-animaux.html" class="lifestyle-card">
+        <img src="https://pixabay.com/get/gae3beee6ebc4215b563c36df653d310ab29db0efe7fd1742f72dc85955cc095f20ad01ba8818832e53288850f1349ea6d82cb693bc82f55c85630b8c2a888a23_1920.jpg" alt="Animaux de compagnie">
+        <div class="overlay">
+          <span class="badge">Bien-être</span>
+          <h3>Animaux de compagnie</h3>
+        </div>
+      </a>
+
+      <!-- Carte 6 : Planète -->
+      <a href="lifestyle-planete.html" class="lifestyle-card">
+        <img src="https://pixabay.com/get/gb206f6b0b5f7028e8f1a3a4572c61efaf1d62d70001df4f80fdf794db5425f167541272319ede00af8d4a7a3a88063a8142153450a5bc95695b84c26cba45f4e_1920.png" alt="Planète">
+        <div class="overlay">
+          <span class="badge">Éco-responsable</span>
+          <h3>Planète & Écologie</h3>
+        </div>
+      </a>
+
+      <!-- Carte 7 : Voyages -->
+      <a href="lifestyle-voyages.html" class="lifestyle-card">
+        <img src="https://plus.unsplash.com/premium_vector-1682303865260-c2886bc994d4?q=80&w=1422&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Voyages">
+        <div class="overlay">
+          <span class="badge">Découverte</span>
+          <h3>Voyages</h3>
+        </div>
+      </a>
+
+        <!-- Carte 1 -->
+      <a href="lifestyle-sante-mentale.html" class="lifestyle-card">
+        <img src="https://plus.unsplash.com/premium_vector-1729252566432-f498060ce597?w=1800.png" alt="Santé mentale">
+        <div class="overlay">
+          <span class="badge">Conseils d’experts</span>
+          <h3>Santé mentale</h3>
+        </div>
+      </a>
+      <!-- Carte 2 -->
+      <a href="lifestyle-relaxation.html" class="lifestyle-card">
+        <img src="https://plus.unsplash.com/premium_vector-1682300543534-e9cd1fb8cc92?w=1800.png" alt="Relaxation">
+        <div class="overlay">
+          <span class="badge">Bien-être</span>
+          <h3>Relaxation</h3>
+        </div>
+      </a>
+      <!-- Carte 3 -->
+      <a href="lifestyle-sport.html" class="lifestyle-card">
+        <img src="https://plus.unsplash.com/premium_vector-1712741923360-25639b9732de?w=1800.png" alt="Sport">
+        <div class="overlay">
+          <span class="badge">Santé & forme</span>
+          <h3>Sport</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+  <!-- FOOTER -->
+      <footer style="background:#f8f8f8;color:#000000;padding:2rem;font-size:0.55rem;font-family:'Inter',sans-serif;">
+         <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;">
+            <div style="flex:1 1 200px;">
+               <p>© 2025 La société makem media</p>
+            </div>
+            <div style="flex:3 1 600px;display:flex;flex-wrap:wrap;gap:1rem;">
+               <a href="contact.html" style="color:#000000;">Contactez-nous</a>
+               <a href="accessibilite.html" style="color:#000000;">Accessibilité</a>
+               <a href="travaillez-avec-nous.html" style="color:#000000;">Travaille avec nous</a>
+               <a href="annoncer.html" style="color:#000000;">Annoncer</a>
+               <a href="studio-marque.html" style="color:#000000;">Studio de la marque</a>
+               <a href="politique-confidentialite.html" style="color:#000000;">Politique de confidentialité</a>
+               <a href="politique-cookies.html" style="color:#000000;">Politique de cookies</a>
+               <a href="conditions-utilisation.html" style="color:#000000;">Conditions d'utilisation</a>
+               <a href="conditions-vente.html" style="color:#000000;">Conditions de vente</a>
+               <a href="plan-du-site.html" style="color:#000000;">Plan du site</a>
+               <a href="international.html" style="color:#000000;">International</a>
+               <a href="aide.html" style="color:#000000;">Aide</a>
+               <a href="abonnements.html" style="color:#000000;">Abonnements</a>
+            </div>
+         </div>
+      </footer>
+<script>
+document.querySelector('.back-btn').addEventListener('click', function() {
+    window.history.back(); // revient à la page précédente
+});
+</script>
+<script>
+// PARTAGER
+document.querySelector('.action-btn.share').addEventListener('click', function() {
+  const url = window.location.href; // lien actuel
+  if (navigator.share) {
+    // API Web Share si supportée (mobile surtout)
+    navigator.share({
+      title: document.title,
+      url: url
+    }).catch(err => console.log('Partage annulé', err));
+  } else {
+    // fallback : copier lien
+    navigator.clipboard.writeText(url).then(() => {
+      alert('Lien copié dans le presse-papier !');
+    });
+  }
+});
+
+// ENREGISTRER (bookmark) : stocker localement
+document.querySelector('.action-btn.bookmark').addEventListener('click', function() {
+  const bookmarks = JSON.parse(localStorage.getItem('makmusBookmarks') || '[]');
+  const page = { title: document.title, url: window.location.href };
+  
+  // éviter doublons
+  if (!bookmarks.find(b => b.url === page.url)) {
+    bookmarks.push(page);
+    localStorage.setItem('makmusBookmarks', JSON.stringify(bookmarks));
+    alert('Page enregistrée !');
+  } else {
+    alert('Cette page est déjà enregistrée.');
+  }
+});
+
+// COMMENTER : scroll vers section commentaires ou prompt
+document.querySelector('.action-btn.comment').addEventListener('click', function() {
+  let comment = prompt("Écrire un commentaire :");
+  if (comment && comment.trim() !== "") {
+    // stocker localement pour simulation
+    const comments = JSON.parse(localStorage.getItem('makmusComments') || '[]');
+    comments.push({ page: window.location.href, text: comment });
+    localStorage.setItem('makmusComments', JSON.stringify(comments));
+    alert('Merci pour votre commentaire !');
+  }
+});
+</script>
+    
+<script>
+const carousel = document.querySelector('.lifestyle-carousel');
+if(carousel){
+  carousel.parentNode.appendChild(prevBtn);
+  carousel.parentNode.appendChild(nextBtn);
+
+  function scrollCarousel(direction){
+    const card = carousel.querySelector('.lifestyle-card');
+    if(!card) return;
+    const gap = parseInt(getComputedStyle(carousel).gap) || 24;
+    const cardWidth = card.offsetWidth + gap;
+
+    carousel.scrollBy({
+      left: direction==='next'? cardWidth : -cardWidth,
+      behavior: 'smooth'
+    });
+  }
+  nextBtn.addEventListener('click',()=>scrollCarousel('next'));
+  prevBtn.addEventListener('click',()=>scrollCarousel('prev'));
+}
+</script>
+    
+</body>
+</html>
