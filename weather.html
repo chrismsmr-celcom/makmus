@@ -340,7 +340,7 @@ if(navigator.geolocation){
     fetchWeather("Kinshasa"); // fallback
   });
 } else {
-  fetchWeather("Kinshasa"); // fallback
+  fetchWeatherByLocation();
 }
 
 async function fetchWeatherByCoords(lat, lon){
@@ -364,3 +364,4 @@ async function fetchWeatherByCoords(lat, lon){
 
 </body>
 </html>
+
