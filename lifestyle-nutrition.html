@@ -196,8 +196,10 @@ ul {
    CARDS GRID (SCROLL)
 ================================ */
 .related-articles {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 14px;
+}
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -208,8 +210,9 @@ ul {
 }
 
 .lifestyle-card {
-  min-width: clamp(200px, 65vw, 240px);
-  height: clamp(200px, 65vw, 240px);
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
@@ -249,6 +252,18 @@ ul {
   padding: 3px 8px;
   border-radius: 999px;
   display: inline-block;
+}
+@media (max-width: 768px) {
+  .related-articles {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .lifestyle-card {
+    min-width: 70vw;
+    scroll-snap-align: start;
+  }
 }
 
 /* ===============================
