@@ -133,8 +133,14 @@ header h2 {
   text-align: left;
 }
 
-/* Reprend le style carousel de la home page */
-.lifestyle-carousel-wrapper { position: relative; }
+/* CAROUSEL */
+.lifestyle-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .lifestyle-carousel {
   display: flex;
   gap: 14px;
@@ -142,13 +148,16 @@ header h2 {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
-.lifestyle-carousel::-webkit-scrollbar { display: none; }
+
+.lifestyle-carousel::-webkit-scrollbar {
+  display: none;
+}
 
 /* CARTES */
 .lifestyle-card {
   position: relative;
   min-width: 220px;
-  height: 220px;
+  height: 300px;
   overflow: hidden;
   scroll-snap-align: center;
   text-decoration: none;
@@ -190,10 +199,42 @@ header h2 {
   border-radius: 20px;
 }
 
-/* Hover effet */
-.lifestyle-card:hover {
-  transform: scale(1.05);
+/* FLÈCHES */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  color: #fff;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
+
+.carousel-btn.prev { left: 20px; }
+.carousel-btn.next { right: 20px; }
+
+.lifestyle-carousel-wrapper:hover .carousel-btn {
+  opacity: 1;
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  .lifestyle-carousel {
+    gap: 24px;
+    justify-content: center;
+    overflow-x: visible;
+  }
+
+  .lifestyle-card {
+    min-width: 300px;
+    height: 220px;
+  }
+}
+
 </style>
       <script async 
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7567982675325882"
