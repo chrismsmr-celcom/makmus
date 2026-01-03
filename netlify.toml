@@ -1,6 +1,6 @@
 [build]
 command = "npm run build"
-publish = "app/dist"
+publish = "dist"
 node_version = "22.x"
 
 [[redirects]]
@@ -8,6 +8,7 @@ from = "/*"
 to = "/index.html"
 status = 200
 
+[context]
 [context.production]
 command = "npm run build"
 
