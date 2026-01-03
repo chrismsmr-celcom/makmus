@@ -6,49 +6,58 @@
 <title>Météo - Makmus</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
+* { box-sizing: border-box; }
 
 body { 
-  margin:0; 
-  font-family:sans-serif; 
-  background:#fff; /* fond blanc neutre */
-  color:#000; 
+  margin: 0; 
+  font-family: 'Inter', system-ui, sans-serif; 
+  background: #f5f6f7;
+  color: #111; 
 }
+
 header { 
-  display:flex; 
-  justify-content:space-between; 
-  align-items:center; 
-  padding:1rem 2rem; 
-  background:#fff; 
-  box-shadow:0 2px 4px rgba(0,0,0,0.1); 
-}
-header .logo img { height:40px; }
-header nav ul { list-style:none; display:flex; gap:1rem; margin:0; padding:0; }
-header nav a { text-decoration:none; color:#000; font-weight:500; }
-
-.weather-page { padding:2rem; max-width:1200px; margin:auto; }
-#searchForm { display:flex; margin-bottom:1rem; gap:0.5rem; }
-#searchInput { flex:1; padding:0.5rem; border-radius:6px; border:1px solid #ccc; }
-#searchBtn { padding:0.5rem 1rem; border:none; background:#000; color:#fff; border-radius:6px; cursor:pointer; }
-
-#weather-container { display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; margin-bottom:2rem; }
-.weather-card { background:#f9f9f9; padding:1rem 1.5rem; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1); width:300px; text-align:center; }
-.weather-card h3 { margin:0.5rem 0; }
-.weather-card p { margin:0.25rem 0; }
-
-#forecast-container { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-bottom:2rem; }
-.forecast-card { background:#f9f9f9; padding:0.8rem 1rem; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); width:120px; text-align:center; }
-
-#map { height:400px; width:100%; border-radius:12px; }
-
-@media(max-width:768px) { 
-  #weather-container, #forecast-container { flex-direction:column; align-items:center; } 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 0.8rem 1.5rem; 
+  background: #fff; 
+  border-bottom: 1px solid #e5e5e5;
 }
 
+header .logo img { height: 36px; }
+header nav ul { list-style: none; display: flex; gap: 1rem; margin: 0; padding: 0; }
+header nav a { text-decoration: none; color: #111; font-size: 0.9rem; font-weight: 500; }
+
+.weather-page { padding: 1.5rem 1rem 2rem; max-width: 1200px; margin: auto; }
+
+#searchForm { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+#searchInput { flex: 1; padding: 0.7rem 0.8rem; border-radius: 10px; border: 1px solid #ccc; font-size: 0.9rem; }
+#searchBtn { padding: 0.7rem 1.2rem; border: none; background: #111; color: #fff; border-radius: 10px; cursor: pointer; font-size: 0.9rem; }
+
+#weather-container { display: flex; justify-content: center; margin-bottom: 2rem; }
+.weather-card { background: #fff; padding: 1.5rem; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); width: 100%; max-width: 360px; text-align: center; }
+.weather-card h3 { margin: 0 0 0.5rem; font-size: 1.2rem; }
+.weather-card p { margin: 0.4rem 0; font-size: 0.9rem; color: #333; }
+.weather-icon { width: 48px; height: 48px; margin-bottom: 0.5rem; }
+
+.weather-page h2 { text-align: center; font-size: 1.2rem; margin-bottom: 1rem; }
+
+#forecast-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.forecast-card { background: #fff; padding: 1rem; border-radius: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); text-align: center; font-size: 0.85rem; }
+.forecast-card strong { display: block; margin-bottom: 0.3rem; font-weight: 600; }
+
+.climate-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.climate-card { background: #fff; padding: 1rem; border-radius: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); text-align: center; font-size: 0.85rem; }
+.climate-card strong { display: block; margin-bottom: 0.3rem; font-weight: 600; color: #111; }
+
+#map { height: 380px; width: 100%; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); overflow: hidden; }
+
+@media (max-width: 768px) {
+  header nav { display: none; }
+  .weather-card { max-width: 100%; }
+  #map { height: 300px; }
+}
 </style>
-  <script async 
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7567982675325882"
-    crossorigin="anonymous">
-  </script>
 </head>
 <body>
 
@@ -73,8 +82,12 @@ header nav a { text-decoration:none; color:#000; font-weight:500; }
   </form>
 
   <div id="weather-container"></div>
-  <h2 style="text-align:center;">Prévisions 7 jours</h2>
+
+  <h2>Prévisions 7 jours</h2>
   <div id="forecast-container"></div>
+
+  <h2>Données climatiques</h2>
+  <div id="climate-container" class="climate-container"></div>
 
   <div id="map"></div>
 </div>
@@ -83,14 +96,22 @@ header nav a { text-decoration:none; color:#000; font-weight:500; }
 <script>
 const weatherContainer = document.getElementById('weather-container');
 const forecastContainer = document.getElementById('forecast-container');
+const climateContainer = document.getElementById('climate-container');
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
 
 // Carte Leaflet
 const map = L.map('map').setView([-4.4419, 15.2663], 6);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution:'© OpenStreetMap'
-}).addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution:'© OpenStreetMap' }).addTo(map);
+
+// Icônes météo simples
+function getWeatherIcon(code){
+  if([0,1].includes(code)) return "☀️";
+  if([2,3].includes(code)) return "⛅";
+  if([45].includes(code)) return "🌫️";
+  if([61,63,65,80].includes(code)) return "🌧️";
+  return "❓";
+}
 
 async function fetchWeather(city){
   try {
@@ -101,10 +122,13 @@ async function fetchWeather(city){
     const {latitude, longitude, name, country} = geoData.results[0];
     map.setView([latitude, longitude], 8);
 
-    const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum,windspeed_10m_max&timezone=auto`);
+    const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum,windspeed_10m_max,sunrise,sunset&timezone=auto`);
     const weatherData = await weatherRes.json();
-    renderWeatherCard({name,country,weatherData});
+
+    renderWeatherCard({name, country, weatherData});
     renderForecast(weatherData.daily);
+    renderClimate(weatherData);
+
   } catch(e){
     console.error(e);
     alert("Erreur lors de la récupération de la météo.");
@@ -117,10 +141,11 @@ function renderWeatherCard({name,country,weatherData}){
   card.className = 'weather-card';
   const weather = weatherData.current_weather;
   card.innerHTML = `
+    <div class="weather-icon">${getWeatherIcon(weather.weathercode)}</div>
     <h3>${name}, ${country}</h3>
     <p>Température actuelle : ${weather.temperature}°C</p>
     <p>Vitesse du vent : ${weather.windspeed} km/h</p>
-    <p>Code météo : ${weather.weathercode}</p>
+    <p>${weatherLabel(weather.weathercode)}</p>
   `;
   weatherContainer.appendChild(card);
 }
@@ -131,14 +156,54 @@ function renderForecast(daily){
     const card = document.createElement('div');
     card.className = 'forecast-card';
     card.innerHTML = `
+      <div class="weather-icon">${getWeatherIcon(daily.weathercode[i])}</div>
       <p><strong>${daily.time[i]}</strong></p>
       <p>Min: ${daily.temperature_2m_min[i]}°C</p>
       <p>Max: ${daily.temperature_2m_max[i]}°C</p>
       <p>Pluie: ${daily.precipitation_sum[i]} mm</p>
       <p>Vent: ${daily.windspeed_10m_max[i]} km/h</p>
+      <p>🌅 ${daily.sunrise[i].split('T')[1]} / 🌇 ${daily.sunset[i].split('T')[1]}</p>
     `;
     forecastContainer.appendChild(card);
   }
+}
+
+function renderClimate(weatherData){
+  climateContainer.innerHTML = '';
+  const current = weatherData.current_weather;
+  const daily = weatherData.daily;
+
+  const climateItems = [
+    { label: "Température max", value: `${daily.temperature_2m_max[0]}°C` },
+    { label: "Température min", value: `${daily.temperature_2m_min[0]}°C` },
+    { label: "Vent max", value: `${daily.windspeed_10m_max[0]} km/h` },
+    { label: "Précipitations", value: `${daily.precipitation_sum[0]} mm` },
+    { label: "Lever du soleil", value: daily.sunrise[0].split('T')[1] },
+    { label: "Coucher du soleil", value: daily.sunset[0].split('T')[1] },
+    { label: "Conditions", value: weatherLabel(current.weathercode) }
+  ];
+
+  climateItems.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'climate-card';
+    card.innerHTML = `<strong>${item.label}</strong><span>${item.value}</span>`;
+    climateContainer.appendChild(card);
+  });
+}
+
+function weatherLabel(code) {
+  const map = {
+    0: "Ciel dégagé",
+    1: "Plutôt dégagé",
+    2: "Partiellement nuageux",
+    3: "Nuageux",
+    45: "Brouillard",
+    61: "Pluie légère",
+    63: "Pluie modérée",
+    65: "Forte pluie",
+    80: "Averses"
+  };
+  return map[code] || "Conditions variables";
 }
 
 searchForm.addEventListener('submit', (e)=>{
@@ -147,12 +212,33 @@ searchForm.addEventListener('submit', (e)=>{
   if(city) fetchWeather(city);
 });
 
-// Initialisation RDC
-fetchWeather("Kinshasa");
-</script>
+// GEOLOCALISATION AUTO
+if(navigator.geolocation){
+  navigator.geolocation.getCurrentPosition(pos => {
+    const {latitude, longitude} = pos.coords;
+    fetchWeatherByCoords(latitude, longitude);
+  }, () => { fetchWeather("Kinshasa"); });
+} else {
+  fetchWeather("Kinshasa");
+}
 
+async function fetchWeatherByCoords(lat, lon){
+  try {
+    const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum,windspeed_10m_max,sunrise,sunset&timezone=auto`);
+    const weatherData = await weatherRes.json();
+    const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/reverse?latitude=${lat}&longitude=${lon}`);
+    const geoData = await geoRes.json();
+    const name = geoData.results[0]?.name || "Localisation";
+    const country = geoData.results[0]?.country || "";
+    map.setView([lat, lon], 8);
+    renderWeatherCard({name, country, weatherData});
+    renderForecast(weatherData.daily);
+    renderClimate(weatherData);
+  } catch(e){
+    console.error(e);
+    alert("Erreur lors de la récupération de la météo.");
+  }
+}
+</script>
 </body>
 </html>
-
-
-
