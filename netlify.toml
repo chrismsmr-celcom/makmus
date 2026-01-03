@@ -1,0 +1,16 @@
+[build]
+command = "npm run build"
+publish = "app/dist"
+node_version = "22.x"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+[context.production]
+command = "npm run build"
+
+[context.production.environment]
+VITE_SUPABASE_URL = ""
+VITE_SUPABASE_ANON_KEY = ""

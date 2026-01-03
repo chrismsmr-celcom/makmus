@@ -1,0 +1,18 @@
+{
+  "name": "makmus-media",
+  "version": "1.0.0",
+  "description": "MAKMUS - Application de média d'information",
+  "type": "module",
+  "engines": {
+    "node": "18.x || 20.x || 22.x"
+  },
+  "scripts": {
+    "dev": "cd app && npm run dev",
+    "build": "cd app && npm run build",
+    "preview": "cd app && npm run preview"
+  },
+  "workspaces": [
+    "app"
+  ],
+  "dependencies": {}
+}
