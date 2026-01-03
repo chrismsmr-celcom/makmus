@@ -157,7 +157,7 @@ header h2 {
 .lifestyle-card {
   position: relative;
   min-width: 220px;
-  height: 300px;
+  height: 220px;
   overflow: hidden;
   scroll-snap-align: center;
   text-decoration: none;
@@ -199,41 +199,12 @@ header h2 {
   border-radius: 20px;
 }
 
-/* FLÈCHES */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  
-  color: #fff;
-  border: none;
-  padding: 12px;
-  cursor: pointer;
-  z-index: 10;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+/* Hover effet */
+.lifestyle-card:hover {
+  transform: scale(1.05);
 }
+</style>
 
-.carousel-btn.prev { left: 20px; }
-.carousel-btn.next { right: 20px; }
-
-.lifestyle-carousel-wrapper:hover .carousel-btn {
-  opacity: 1;
-}
-
-/* DESKTOP */
-@media (min-width: 1024px) {
-  .lifestyle-carousel {
-    gap: 24px;
-    justify-content: center;
-    overflow-x: visible;
-  }
-
-  .lifestyle-card {
-    min-width: 300px;
-    height: 220px;
-  }
-}
 
 </style>
       <script async 
