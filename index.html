@@ -358,10 +358,6 @@ family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap
     height: 220px;
   }
 }
-/* =========================
-   A LA UNE – MOBILE FIRST
-========================= */
-
           .une {
   background: #fff;
   padding: 40px 20px;
@@ -431,10 +427,54 @@ family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap
     font-size: 26px;
   }
 }
-@media(max-width: 360px) {
-  .excerpt {
-    display: none;
+@media(max-width: 768px) {
+
+  .une {
+    padding: 30px 16px;      /* marges plus équilibrées */
   }
+
+  .une-container {
+    grid-template-columns: 1fr;
+    max-width: 600px;        /* centre visuellement le bloc */
+    margin: 0 auto;
+    gap: 20px;
+  }
+
+  .une-image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .une-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0;        /* confirmé : aucun arrondi */
+  }
+
+  .une-content {
+    text-align: center;      /* centrage éditorial */
+  }
+
+  .une-content .badge {
+    margin: 0 auto 10px;
+  }
+
+  .une-content h1 {
+    font-size: 26px;
+    line-height: 1.25;
+  }
+
+  .subtitle,
+  .excerpt {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .read-more {
+    display: inline-block;
+    margin-top: 10px;
+  }
+
 }
       </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7567982675325882"
