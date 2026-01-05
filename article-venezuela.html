@@ -5,131 +5,163 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Venezuela : Washington frappe et capture Maduro</title>
 <style>
-body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #111; background-color: #f9f9f9; margin: 0; padding: 0; }
+/* GLOBAL */
+body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #111; background-color: #f9f9f9; margin:0; padding:0; }
 a { color: #1a73e8; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-.container { max-width: 900px; margin: 40px auto; padding: 0 20px; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.05); border-radius: 0px; }
+/* HEADER / NAVBAR */
+header { border-bottom:1px solid #ddd; padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; }
+.logo img { height:40px; }
+nav ul { display:flex; gap:1.5rem; list-style:none; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; margin:0; padding:0; }
+nav a { color:#111; text-decoration:none; }
+nav a:hover { color:#e63946; }
+.menu-toggle { display:none; font-size:1.8rem; background:none; border:none; cursor:pointer; }
 
-.article-header { padding: 30px 20px 0 0px; text-align: center; }
-.article-header h1 { font-size: 32px; margin-bottom: 20px; line-height: 1.2; }
-.article-header h1 {
-  font-size: 32px;
-  margin: 0 auto 20px auto;
-  line-height: 1.2;
-  text-align: center;
-  max-width: 800px;
+/* FULLSCREEN MENU */
+.fullscreen-menu{
+  position:fixed;
+  inset:0;
+  background:#fff;
+  z-index:9999;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  transform:translateY(-100%);
+  transition:0.4s ease;
 }
+.fullscreen-menu.active{transform:translateY(0)}
+.fullscreen-menu ul{text-align:center; list-style:none; margin-top:2rem;}
+.fullscreen-menu li{margin:1.2rem 0;}
+.fullscreen-menu a{font-family:'Libre Baskerville',serif; font-size:2rem; color:#111; text-decoration:none;}
+.fullscreen-menu a:hover{color:#e63946;}
+.close-menu{position:absolute; top:1.5rem; right:2rem; font-size:2rem; background:none; border:none; cursor:pointer;}
+
+/* SEARCH FORM */
+.fullscreen-menu form#searchForm {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:0.5rem;
+  margin-top:1rem;
+}
+.fullscreen-menu input#searchInput {
+  padding:0.8rem 1rem;
+  font-size:1rem;
+  width:250px;
+  border:1px solid #ccc;
+  border-radius:4px;
+  outline:none;
+}
+.fullscreen-menu button[type="submit"] {
+  padding:0.8rem 1rem;
+  font-size:1rem;
+  background:#111;
+  color:#fff;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+}
+.fullscreen-menu button[type="submit"]:hover { background:#333; }
+
+/* DATE BAR */
+.date-bar { font-size:0.75rem; padding:0.5rem 2rem; border-bottom:1px solid #eee; color:#555; text-align:center; }
+
+/* ARTICLE */
+.container { max-width: 900px; margin: 40px auto; padding: 0 20px; background: #f9f9f9, box-shadow: 0 2px 12px rgba(0,0,0,0.05); border-radius: 0px; }
+.article-header { padding: 30px 20px 0; text-align: center; }
+.article-header h1 { font-size: 32px; margin-bottom: 20px; line-height: 1.2; text-align:center; }
 .article-header img { width: 100%; max-height: 500px; object-fit: cover; border-radius: 0px; margin-bottom: 10px; }
 .article-header .caption { font-size: 0.85em; color: #555; margin-bottom: 20px; }
-
 section { padding: 20px; border-top: 1px solid #eee; }
 section:first-of-type { border-top: none; }
-section h2 { font-size: 22px; margin-bottom: 15px; color: #000000; }
-section p { margin-bottom: 15px; font-size: 16px; color: #000000; }
-
-blockquote { font-style: italic; color: #555; border-left: 4px solid #1a73e8; padding-left: 15px; margin: 15px 0; background: #FFFFFF; border-radius: 0px; }
-
+section h2 { font-size: 22px; margin-bottom: 15px; color: #222; }
+section p { margin-bottom: 15px; font-size: 16px; color: #333; }
+blockquote { font-style: italic; color: #555; border-left: 4px solid #1a73e8; padding-left: 15px; margin: 15px 0; background: #f1f5f9; border-radius: 0px; }
 ul { padding-left: 20px; margin-bottom: 15px; }
 li { margin-bottom: 8px; }
 
-.card { background: #FFFFFF; padding: 15px 20px; border-radius: opx; margin: 20px 0; box-shadow: 0 1px 6px rgba(0,0,0,0.05); }
-.card h3 { margin-top: 0; color: #000000; }
-.timeline-item { margin-bottom: 10px; }
-.timeline-item span { font-weight: bold; color: #000000; }
-
-.map { width: 100%; height: 300px; background: #ddd url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Caribbean_region_map.png/640px-Caribbean_region_map.png') center center / contain no-repeat; border-radius: 0px; margin: 15px 0; }
-
-@media(max-width:600px) {
-    .article-header h1 { font-size: 26px; }
-    section h2 { font-size: 20px; }
-    section p { font-size: 15px; }
+/* ACTION BUTTON */
+.action-btn {
+  background: #f0f0f0;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-@media(max-width:600px) {
+.action-btn:hover { background: #e0e0e0; transform: scale(1.05); }
+.action-btn.comment { padding: 6px 14px; font-weight:500; }
+.byline { color:#555; font-size:0.9rem; margin-bottom:1rem; display: flex; align-items: center; gap: 6px; }
+.byline-icon { width:20px; height:20px; object-fit: contain; }
 
-  body {
-    background-color: #fff; /* plus propre sur mobile */
-  }
+/* FOOTER */
+footer { text-align:center; padding:20px 0; border-top:1px solid #ddd; font-size:0.85rem; color:#555; background:#f9f9f9; }
 
-  .container {
-    margin: 20px auto;
-    padding: 0;
-    max-width: 600px;       /* centrage visuel */
-    box-shadow: none;       /* sensation presse, pas blog */
-    border-radius: 0;
-  }
-
-  .article-header {
-    padding: 20px 16px 0;
-    text-align: center;
-  }
-
-  .article-header h1 {
-    font-size: 26px;
-    line-height: 1.25;
-    margin-bottom: 16px;
-  }
-
-  .article-header img {
-    max-height: 320px;
-    width: 100%;
-    border-radius: 0;
-  }
-
-  .article-header .caption {
-    font-size: 0.8rem;
-    padding: 0 12px;
-  }
-
-  section {
-    padding: 18px 16px;
-  }
-
-  section h2 {
-    font-size: 20px;
-    text-align: center;
-  }
-
-  section p {
-    font-size: 15px;
-    line-height: 1.6;
-    text-align: left;      /* sérieux, pas blog */
-  }
-
-  blockquote {
-    margin: 20px auto;
-    padding: 14px 16px;
-    border-radius: 0;
-  }
-
-  .card {
-    margin: 20px 16px;
-    padding: 16px;
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  .map {
-    height: 220px;
-    margin: 20px auto;
-    border-radius: 0;
-  }
-
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{display:none}
+  .menu-toggle{display:block}
 }
 </style>
 </head>
 <body>
 
+<!-- FULLSCREEN MENU -->
+<div class="fullscreen-menu" id="fullscreenMenu">
+  <button class="close-menu">✕</button>
+  <form id="searchForm">
+    <input type="text" id="searchInput" placeholder="Rechercher...">
+    <button type="submit">GO</button>
+  </form>
+  <ul>
+    <li><a href="politique.html">Politique</a></li>
+    <li><a href="economie.html">Économie</a></li>
+    <li><a href="sport.html">Sport</a></li>
+    <li><a href="musique.html">Musique</a></li>
+    <li><a href="rdc.html">RDC</a></li>
+    <li><a href="weather.html">Météo</a></li>
+    <li><a href="jeux.html">Jeux</a></li>
+  </ul>
+  <div id="searchResults"></div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo"><img src="https://i.postimg.cc/7ZWdGrQc/Screenshot_2025_12_24_21_32_24_removebg_preview.png" alt="Makmus"></div>
+  <button class="menu-toggle">&#9776;</button>
+  <nav>
+    <ul>
+      <li><a href="politique.html">Politique</a></li>
+      <li><a href="economie.html">Économie</a></li>
+      <li><a href="sport.html">Sport</a></li>
+      <li><a href="musique.html">Musique</a></li>
+      <li><a href="rdc.html">RDC</a></li>
+      <li><a href="weather.html">Météo</a></li>
+      <li><a href="jeux.html">Jeux</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- DATE BAR -->
+ <div class="date-bar" id="date"></div>
+
+
 <div class="container" contenteditable="true" spellcheck="true">
 
-  <!-- Header -->
+  <!-- Header Article -->
   <div class="article-header">
     <h1>Venezuela : Washington frappe et capture Maduro, quelles conséquences pour le pays et le monde</h1>
     <img src="https://dims.apnews.com/dims4/default/404beb8/2147483647/strip/true/crop/4844x3229+0+0/resize/1440x960!/format/webp/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fb3%2F4f%2F2ea8438ef6ed842bd3f9fc3cbdbe%2F270c90cc1c4c40cbaceaabbe40a0ca9f" alt="Fumée à l'aéroport de La Carlota, Caracas">
     <p class="caption">De la fumée s’élève à l’aéroport de La Carlota après des explosions et le passage d’avions à basse altitude entendus à Caracas, au Venezuela, le samedi 3 janvier 2026. (Photo AP/Matias Delacroix)</p>
   </div>
 
-  <!-- Section principale -->
+  <!-- Sections de l'article -->
   <section>
     <p><strong>Le Venezuela, déjà fragilisé par une décennie de crises économiques et politiques, est plongé dans un tournant historique majeur.</strong></p>
     <p>Le samedi 3 janvier à 2h01 à Caracas, les habitants ont retenu leur souffle après plusieurs fortes explosions dans la capitale. Ce n’est que quelques heures plus tard que CBS a confirmé l’implication des États-Unis, suivie par une déclaration de Donald Trump lui-même, qui a confirmé la capture et l’exfiltration de <strong>Nicolás Maduro</strong> et de sa femme, la députée Cilia Flores, lors d’une opération spéciale qui aurait duré trois heures, menée par l’unité Delta Force. Le président vénézuélien est désormais détenu dans une prison au sud de New York.</p>
@@ -137,15 +169,13 @@ li { margin-bottom: 8px; }
   </section>
 
   <section>
-    <p>L’administration américaine accuse Maduro d’être à la tête d’un régime criminel, exportateur de stupéfiants vers les États-Unis et responsable de la misère de son peuple. Depuis plusieurs années, Washington le qualifie de dictateur illégitime, cherchant à délégitimer son autorité sur la scène internationale. Ces accusations ont servi de justification pour passer de la pression diplomatique à l’action militaire directe, rompant avec des décennies de sanctions économiques et d’isolement progressif.</p>
+    <p>L’administration américaine accuse Maduro d’être à la tête d’un régime criminel, exportateur de stupéfiants vers les États-Unis et responsable de la misère de son peuple...</p>
   </section>
 
   <section>
     <h2>Capture et transition</h2>
-    <p>Lors d’une conférence de presse donnée juste après la capture de Nicolás Maduro, le président Donald Trump a affirmé que les États-Unis allaient « diriger » le Venezuela jusqu’à une transition du pouvoir. Il a désigné trois membres de son administration — le secrétaire d’État Marco Rubio, le secrétaire à la Défense Peter Hegseth et le chef d’état-major Dan Cain — affirmant qu’ils superviseraient la transition.</p>
-    <p>Trump a également déclaré que la vice-présidente vénézuélienne Delcy Rodríguez, actuellement présidente par intérim, avait précédemment prêté serment devant des journalistes en tant que présidente et s’était entretenue avec Rubio.</p>
-    <blockquote>« Elle est fondamentalement disposée à faire ce que nous jugeons nécessaire pour que le Venezuela retrouve sa grandeur. C’est très simple », a ajouté le président américain.</blockquote>
-    <p>Jusqu’à présent, rien ne confirme l’implication de Delcy Rodríguez dans la chute et la capture de Maduro et elle n’a fait aucune mention de Rubio dans son allocution télévisée. Elle reste ouverte au dialogue avec les États-Unis, déclarant que la seule chose que le Venezuela peut accepter après ces attaques est « une relation respectueuse ». Elle a exigé la libération de Maduro, le qualifiant de dirigeant légitime, et a dénoncé ces événements comme une « atrocité qui viole le droit international ».</p>
+    <p>Lors d’une conférence de presse donnée juste après la capture de Nicolás Maduro, le président Donald Trump a affirmé que les États-Unis allaient « diriger » le Venezuela jusqu’à une transition du pouvoir...</p>
+    <blockquote>« Elle est fondamentalement disposée à faire ce que nous jugeons nécessaire pour que le Venezuela retrouve sa grandeur. C’est très simple »</blockquote>
   </section>
 
   <!-- Timeline -->
@@ -157,52 +187,275 @@ li { margin-bottom: 8px; }
     <div class="timeline-item"><span>Après-midi :</span> Maduro transféré par avion à New York et détenu à Brooklyn.</div>
   </div>
 
-<!-- Carte spécifique de Caracas -->
-<div class="card">
-  <h3>Carte de Caracas — Focus sur l’aéroport de La Carlota</h3>
-  <img src="https://focus.courrierinternational.com/2023/11/06/0/0/2000/1592/2560/0/60/0/1e848b8_1699282139433-web20231106venezuelamaracaii-bo.png"
-       alt="Carte de Caracas — aéroport de La Carlota et zones proches"
-       style="width:100%; border-radius:8px; margin-bottom:10px;">
-  <p>Carte de la zone métropolitaine de Caracas et de l’aéroport de La Carlota, où ont eu lieu les explosions et les opérations aériennes signalées le 3 janvier 2026.</p>
-</div>
-
-  <!-- Section économie et pétrole -->
+  <!-- Sections économie, légale et internationale -->
   <section>
     <h2>Économie et pétrole</h2>
-    <p>Trump n’a pas donné de détails sur la transition mixte américano-vénézuélienne ni ses implications militaires, mais a indiqué que des sociétés pétrolières américaines s’impliqueront dans la réparation et la remise en marche de l’industrie pétrolière vénézuélienne, et que les recettes de cette industrie serviraient à financer le fonctionnement du pays.</p>
-    <blockquote>« Nous allons être remboursés de toutes nos dépenses », a-t-il déclaré.</blockquote>
+    <p>Trump n’a pas donné de détails sur la transition mixte américano-vénézuélienne...</p>
   </section>
 
-  <!-- Section légale -->
   <section>
     <h2>Accusations légales</h2>
-    <p>Selon un acte d’accusation rendu public samedi, le président vénézuélien, sa femme, son fils et trois autres personnes sont inculpés de quatre chefs d’accusation :</p>
     <ul>
       <li>Association de malfaiteurs en vue de commettre un trafic de stupéfiants ou terrorisme</li>
       <li>Trafic d’importation de cocaïne</li>
       <li>Possession d’armes automatiques et d’engins explosifs</li>
       <li>Association de malfaiteurs en vue de la possession d’armes automatiques et d’engins explosifs</li>
     </ul>
-    <p>Washington les accuse de travailler directement avec des organisations puissantes et violentes telles que le cartel de Sinaloa ou le gang Tren de Aragua, et de reverser les profits aux hauts fonctionnaires en échange de protection et de soutien.</p>
-    <p>Maduro et sa femme ont été conduits sur un navire de guerre américain, puis transportés par avion à New York. Le président est détenu dans une prison de Brooklyn, proche de la Statue de la Liberté, décrite comme un « enfer sur terre » et une « tragédie permanente ».</p>
   </section>
 
-  <!-- Section contexte historique et international -->
   <section>
     <h2>Contexte et implications internationales</h2>
-    <p>Depuis la crise politique et économique qui secoue le Venezuela depuis plus d’une décennie, la population vit sous une pression constante, entre inflation galopante, pénuries alimentaires et instabilité sociale. L’intervention américaine marque une rupture historique dans la région.</p>
-    <p>Sur le plan international, cette opération soulève de nombreuses questions : la capture d’un chef d’État par une puissance étrangère sans mandat de l’ONU pourrait être considérée comme une violation du droit international. Plusieurs pays et organisations diplomatiques observent avec inquiétude les prochaines étapes.</p>
-    <p>Les experts notent que ce type d’action pourrait inspirer ou justifier des interventions similaires ailleurs dans le monde, accentuant les tensions entre les nations et questionnant la légitimité des interventions militaires sous prétexte de lutte contre le trafic de drogue ou la criminalité organisée.</p>
+    <p>Depuis la crise politique et économique qui secoue le Venezuela depuis plus d’une décennie...</p>
   </section>
 
-  <!-- Section conclusion -->
   <section>
     <h2>Conclusion</h2>
-    <p>La capture de Nicolás Maduro marque une <strong>escalade historique en Amérique latine</strong> et soulève de nombreuses questions : le peuple vénézuélien sera-t-il réellement libéré, ou s’agit-il simplement d’un <strong>changement de tyran imposé par une puissance étrangère</strong> ? L’avenir immédiat du Venezuela dépendra autant de la diplomatie et des institutions locales que de la puissance militaire américaine.</p>
-    <p>Les semaines et mois à venir seront cruciaux pour observer comment la communauté internationale réagira, comment le peuple vénézuélien réagira et si le pays pourra retrouver un semblant de stabilité après ce bouleversement majeur.</p>
+    <p>La capture de Nicolás Maduro marque une <strong>escalade historique en Amérique latine</strong>...</p>
   </section>
 
 </div>
+
+
+ <!-- FOOTER -->
+      <footer style="background:#D3D3D3;color:#000000;padding:2rem;font-size:0.85rem;font-family:'Inter',sans-serif;">
+         <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;">
+            <div style="flex:1 1 200px;">
+               <p>© 2025 La société makem media</p>
+            </div>
+            <div style="flex:3 1 600px;display:flex;flex-wrap:wrap;gap:1rem;">
+               <a href="contact.html" style="color:#000000;">Contactez-nous</a>
+               <a href="accessibilite.html" style="color:#000000;">Accessibilité</a>
+               <a href="travaillez-avec-nous.html" style="color:#000000;">Travaille avec nous</a>
+               <a href="annoncer.html" style="color:#000000;">Annoncer</a>
+               <a href="studio-marque.html" style="color:#000000;">Studio de la marque</a>
+               <a href="politique-confidentialite.html" style="color:#000000;">Politique de confidentialité</a>
+               <a href="politique-cookies.html" style="color:#000000;">Politique de cookies</a>
+               <a href="conditions-utilisation.html" style="color:#000000;">Conditions d'utilisation</a>
+               <a href="conditions-vente.html" style="color:#000000;">Conditions de vente</a>
+               <a href="plan-du-site.html" style="color:#000000;">Plan du site</a>
+               <a href="international.html" style="color:#000000;">International</a>
+               <a href="aide.html" style="color:#000000;">Aide</a>
+               <a href="abonnements.html" style="color:#000000;">Abonnements</a>
+            </div>
+         </div>
+      </footer>
+<script>
+// FULLSCREEN MENU TOGGLE
+document.querySelector(".menu-toggle").onclick = ()=>{document.getElementById("fullscreenMenu").classList.add("active");};
+document.querySelector(".close-menu").onclick = ()=>{document.getElementById("fullscreenMenu").classList.remove("active");};
+
+// SEARCH IN MENU
+const searchForm = document.getElementById("searchForm");
+const searchInput = document.getElementById("searchInput");
+const searchResults = document.getElementById("searchResults");
+searchForm.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if(!query) return;
+    searchResults.innerHTML = "<p>Recherche en cours...</p>";
+    // ici tu peux ajouter ton fetch API pour les résultats
+});
+</script>
+      <!-- BOUTON FLOTTANT SHARE -->
+<div id="share-fab">
+  <img src="https://cdn-icons-png.flaticon.com/512/2990/2990295.png" alt="Partager">
+</div>
+<!-- MODAL PREMIUM -->
+<div id="share-modal">
+  <div class="share-content">
+    <span class="close" onclick="closeShare()">✕</span>
+    <h3>Partager cette page</h3>
+    <div class="share-buttons">
+      <a href="#" id="share-facebook" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+      <a href="#" id="share-twitter" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+      <a href="#" id="share-whatsapp" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
+      <a href="#" id="share-telegram" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"></a>
+      <a href="#" id="share-messenger" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Messenger"></a>
+      <a href="#" id="share-email" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email"></a>
+      <button id="copy-link">Copier le lien</button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* BOUTON FLOTTANT */
+#share-fab {
+  position: fixed;
+  right: 15px;
+  bottom: 10px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+#share-fab img {
+  width: 60%;
+  height: 60%;
+}
+#share-fab:hover {
+  transform: scale(1.1);
+}
+
+/* MODAL */
+#share-modal {
+  display: none;
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  backdrop-filter: blur(5px);
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  justify-content: center;
+  align-items: flex-start; /* slide down effect */
+  overflow-y: auto;
+}
+.share-content {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 15px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  margin-top: -300px; /* hidden above */
+  opacity: 0;
+  transform: translateY(-100px);
+  transition: all 0.5s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+#share-modal.active .share-content {
+  margin-top: 50px;
+  opacity: 1;
+  transform: translateY(0);
+}
+.share-content h3 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+.share-content .close {
+  position: absolute;
+  top: 12px; right: 18px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+.share-buttons a, .share-buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: #f0f0f0;
+  border-radius: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.share-buttons a img {
+  width: 28px;
+  height: 28px;
+}
+.share-buttons a:hover, .share-buttons button:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  background: #e0e0e0;
+}
+#copy-link {
+  font-size: 0.85rem;
+  font-weight: bold;
+  background: #007bff;
+  color: #fff;
+}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+  #share-fab {
+    width: 35px;
+    height: 35px;
+  }
+  .share-buttons a, .share-buttons button {
+    width: 45px;
+    height: 45px;
+  }
+  .share-buttons a img {
+    width: 24px;
+    height: 24px;
+  }
+}
+</style>
+
+<script>
+    // DATE
+function setDate(){
+    document.getElementById('date').textContent = new Date().toLocaleDateString('fr-FR',{
+        weekday:'long', year:'numeric', month:'long', day:'numeric'
+    });
+}
+setDate();
+
+var pageUrl = encodeURIComponent(window.location.href);
+var pageTitle = encodeURIComponent(document.title);
+
+// Ouvrir / fermer modal avec slide down
+document.getElementById("share-fab").onclick = function() {
+  var modal = document.getElementById("share-modal");
+  modal.style.display = "flex";
+  setTimeout(function(){ modal.classList.add("active"); }, 10);
+}
+function closeShare() {
+  var modal = document.getElementById("share-modal");
+  modal.classList.remove("active");
+  setTimeout(function(){ modal.style.display = "none"; }, 500);
+}
+
+// Liens réseaux
+document.getElementById("share-facebook").href = "https://www.facebook.com/sharer/sharer.php?u="+pageUrl;
+document.getElementById("share-twitter").href = "https://twitter.com/intent/tweet?url="+pageUrl+"&text="+pageTitle;
+document.getElementById("share-whatsapp").href = "https://api.whatsapp.com/send?text="+pageTitle+" "+pageUrl;
+document.getElementById("share-telegram").href = "https://t.me/share/url?url="+pageUrl+"&text="+pageTitle;
+document.getElementById("share-messenger").href = "fb-messenger://share?link="+pageUrl;
+document.getElementById("share-email").href = "mailto:?subject="+pageTitle+"&body="+pageUrl;
+
+// Copier le lien
+document.getElementById("copy-link").onclick = function() {
+  navigator.clipboard.writeText(window.location.href).then(function(){
+    alert("Lien copié !");
+  });
+}
+</script>
+
+<script>
+const carousel = document.querySelector('.lifestyle-carousel');
+const prevBtn = document.querySelector('.carousel-btn.prev');
+const nextBtn = document.querySelector('.carousel-btn.next');
+
+function scrollCarousel(direction) {
+  const card = carousel.querySelector('.lifestyle-card');
+  if (!card) return;
+  const gap = parseInt(getComputedStyle(carousel).gap) || 24;
+  const cardWidth = card.offsetWidth + gap;
+
+  carousel.scrollBy({
+    left: direction === 'next' ? cardWidth : -cardWidth,
+    behavior: 'smooth'
+  });
+}
+
+nextBtn.addEventListener('click', () => scrollCarousel('next'));
+prevBtn.addEventListener('click', () => scrollCarousel('prev'));
+
+</script>
 
 </body>
 </html>
