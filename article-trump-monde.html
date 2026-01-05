@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trump suggère que les États-Unis pourraient agir contre plusieurs pays</title>
+<style>
+/* GLOBAL */
+body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #111; background-color: #f9f9f9; margin:0; padding:0; }
+a { color: #1a73e8; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* HEADER / NAVBAR */
+header { border-bottom:1px solid #ddd; padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; }
+.logo img { height:40px; }
+nav ul { display:flex; gap:1.5rem; list-style:none; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; margin:0; padding:0; }
+nav a { color:#111; text-decoration:none; }
+nav a:hover { color:#e63946; }
+.menu-toggle { display:none; font-size:1.8rem; background:none; border:none; cursor:pointer; }
+
+/* FULLSCREEN MENU */
+.fullscreen-menu{
+  position:fixed;
+  inset:0;
+  background:#fff;
+  z-index:9999;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  transform:translateY(-100%);
+  transition:0.4s ease;
+}
+.fullscreen-menu.active{transform:translateY(0)}
+.fullscreen-menu ul{text-align:center; list-style:none; margin-top:2rem;}
+.fullscreen-menu li{margin:1.2rem 0;}
+.fullscreen-menu a{font-family:'Libre Baskerville',serif; font-size:2rem; color:#111; text-decoration:none;}
+.fullscreen-menu a:hover{color:#e63946;}
+.close-menu{position:absolute; top:1.5rem; right:2rem; font-size:2rem; background:none; border:none; cursor:pointer;}
+
+/* SEARCH FORM */
+.fullscreen-menu form#searchForm {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:0.5rem;
+  margin-top:1rem;
+}
+.fullscreen-menu input#searchInput {
+  padding:0.8rem 1rem;
+  font-size:1rem;
+  width:250px;
+  border:1px solid #ccc;
+  border-radius:4px;
+  outline:none;
+}
+.fullscreen-menu button[type="submit"] {
+  padding:0.8rem 1rem;
+  font-size:1rem;
+  background:#111;
+  color:#fff;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+}
+.fullscreen-menu button[type="submit"]:hover { background:#333; }
+
+/* DATE BAR */
+.date-bar { font-size:0.75rem; padding:0.5rem 2rem; border-bottom:1px solid #eee; color:#555; text-align:center; }
+
+/* ARTICLE */
+.container { max-width: 900px; margin: 40px auto; padding: 0 20px; background: #f9f9f9, box-shadow: 0 2px 12px rgba(0,0,0,0.05); border-radius: 0px; }
+.article-header { padding: 30px 20px 0; text-align: center; }
+.article-header h1 { font-size: 32px; margin-bottom: 20px; line-height: 1.2; text-align:center; }
+.article-header img { width: 100%; max-height: 500px; object-fit: cover; border-radius: 0px; margin-bottom: 10px; }
+.article-header .caption { font-size: 0.85em; color: #555; margin-bottom: 20px; }
+section { padding: 20px; border-top: 1px solid #eee; }
+section:first-of-type { border-top: none; }
+section h2 { font-size: 22px; margin-bottom: 15px; color: #222; }
+section p { margin-bottom: 15px; font-size: 16px; color: #333; }
+blockquote { font-style: italic; color: #555; border-left: 4px solid #1a73e8; padding-left: 15px; margin: 15px 0; background: #f1f5f9; border-radius: 0px; }
+ul { padding-left: 20px; margin-bottom: 15px; }
+li { margin-bottom: 8px; }
+
+/* ACTION BUTTON */
+.action-btn {
+  background: #f0f0f0;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.action-btn:hover { background: #e0e0e0; transform: scale(1.05); }
+.action-btn.comment { padding: 6px 14px; font-weight:500; }
+.byline { color:#555; font-size:0.9rem; margin-bottom:1rem; display: flex; align-items: center; gap: 6px; }
+.byline-icon { width:20px; height:20px; object-fit: contain; }
+
+/* FOOTER */
+footer { text-align:center; padding:20px 0; border-top:1px solid #ddd; font-size:0.85rem; color:#555; background:#f9f9f9; }
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{display:none}
+  .menu-toggle{display:block}
+}
+</style>
+</head>
+<body>
+
+<!-- FULLSCREEN MENU -->
+<div class="fullscreen-menu" id="fullscreenMenu">
+  <button class="close-menu">✕</button>
+  <form id="searchForm">
+    <input type="text" id="searchInput" placeholder="Rechercher...">
+    <button type="submit">GO</button>
+  </form>
+  <ul>
+    <li><a href="politique.html">Politique</a></li>
+    <li><a href="economie.html">Économie</a></li>
+    <li><a href="sport.html">Sport</a></li>
+    <li><a href="musique.html">Musique</a></li>
+    <li><a href="rdc.html">RDC</a></li>
+    <li><a href="weather.html">Météo</a></li>
+    <li><a href="jeux.html">Jeux</a></li>
+  </ul>
+  <div id="searchResults"></div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo"><img src="https://i.postimg.cc/7ZWdGrQc/Screenshot_2025_12_24_21_32_24_removebg_preview.png" alt="Makmus"></div>
+  <button class="menu-toggle">&#9776;</button>
+  <nav>
+    <ul>
+      <li><a href="politique.html">Politique</a></li>
+      <li><a href="economie.html">Économie</a></li>
+      <li><a href="sport.html">Sport</a></li>
+      <li><a href="musique.html">Musique</a></li>
+      <li><a href="rdc.html">RDC</a></li>
+      <li><a href="weather.html">Météo</a></li>
+      <li><a href="jeux.html">Jeux</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- DATE BAR -->
+ <div class="date-bar" id="date"></div>
+
+<!-- ARTICLE -->
+<div class="container">
+  <div class="article-header">
+    <h1>Trump suggère que les États‑Unis pourraient agir contre plusieurs pays</h1>
+    <img src="https://static01.nyt.com/images/2026/01/04/multimedia/04us-venezuela-trump-threats-bvmt/04us-venezuela-trump-threats-bvmt-jumbo.jpg?quality=75&auto=webp" alt="Trump Air Force One">
+  </div>
+  <section>
+    <p>Washington, 5 janvier 2026 – Dans une série de déclarations faites à bord d’Air Force One, le président américain Donald Trump a laissé entendre que les États-Unis pourraient intervenir contre plusieurs pays, dont la Colombie et Cuba, tout en réaffirmant son intérêt stratégique pour le Groenland. Ces propos interviennent quelques jours après l’opération américaine au Venezuela et ont provoqué des réactions internationales contrastées.</p>
+    <p><b>Menace contre la Colombie</b></p>
+    <p>Trump a critiqué le gouvernement du président Gustavo Petro, accusé selon lui de ne pas suffisamment lutter contre le trafic de drogue. « La Colombie est très malade… dirigée par un homme qui aime fabriquer de la cocaïne et la vendre aux États-Unis », a-t-il déclaré. Le président américain a laissé entendre que des mesures plus directes pourraient être envisagées si la situation ne s’améliorait pas, incluant des opérations militaires.</p>
+    <p>Ces propos ont immédiatement suscité des inquiétudes diplomatiques en Amérique latine, certains analystes craignant une escalade dans la région.</p>
+    <p>Après le raid et la capture et le transfert de Maduro vers New York où il sera jugé pour trafic de drogue, association des malfaiteurs, détention d'armes et explosifs…</p>
+    <p>À bord d'Air Force One, Donald Trump a déclaré aux journalistes lors d'une séance de questions-réponses que la Colombie était <i>"dirigée par un homme malade qui aime fabriquer de la cocaïne et la vendre aux États-Unis"</i>. <i>"Il ne va pas continuer comme ça très longtemps"</i>, a-t-il ajouté.</p>
+    <p>Donald Trump et Gustavo Petro sont engagés dans un différend de plus en plus virulent au sujet des frappes navales menées par les États-Unis dans les Caraïbes et le Pacifique oriental, qui ont accru la pression sur la Colombie, plaque tournante du trafic de drogue dans la région.</p>
+    <p><b>Cuba: "prêt à tomber"</b></p>
+    <p>Sur le cas de Cuba, Trump a estimé que l'île semblait prête à s'effondrer économiquement et politiquement, notamment depuis que le flux de pétrole vénézuélien, principal allié, s'est tari. "Je ne pense pas que nous ayons besoin d'intervenir, je ne sais pas s'ils vont tenir le coup, mais Cuba n'a plus aucun revenu, tout leurs revenus provenaient du Venezuela et du pétrole vénézuélien", a-t-il ajouté.</p>
+    <p><b>Groenland: une obsession stratégique</b></p>
+    <p>Trump a également réitéré son intérêt pour le Groenland, une île riche en ressources naturelles et d'importance géopolitique majeure en Arctique. Selon lui, les États-Unis doivent sécuriser ce territoire pour leur sécurité nationale, alors que la Russie et la Chine multiplient leurs initiatives dans l'Arctique. Les autorités danoises et groenlandaises ont rapidement rejeté cette idée, rappelant que le Groenland est une partie intégrante du Royaume de Danemark et qu'aucune cession n'est envisagée.</p>
+    <div style="text-align:center;">
+    </div>
+  </section>
+</div>
+
+
+ <!-- FOOTER -->
+      <footer style="background:#D3D3D3;color:#000000;padding:2rem;font-size:0.85rem;font-family:'Inter',sans-serif;">
+         <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;">
+            <div style="flex:1 1 200px;">
+               <p>© 2025 La société makem media</p>
+            </div>
+            <div style="flex:3 1 600px;display:flex;flex-wrap:wrap;gap:1rem;">
+               <a href="contact.html" style="color:#000000;">Contactez-nous</a>
+               <a href="accessibilite.html" style="color:#000000;">Accessibilité</a>
+               <a href="travaillez-avec-nous.html" style="color:#000000;">Travaille avec nous</a>
+               <a href="annoncer.html" style="color:#000000;">Annoncer</a>
+               <a href="studio-marque.html" style="color:#000000;">Studio de la marque</a>
+               <a href="politique-confidentialite.html" style="color:#000000;">Politique de confidentialité</a>
+               <a href="politique-cookies.html" style="color:#000000;">Politique de cookies</a>
+               <a href="conditions-utilisation.html" style="color:#000000;">Conditions d'utilisation</a>
+               <a href="conditions-vente.html" style="color:#000000;">Conditions de vente</a>
+               <a href="plan-du-site.html" style="color:#000000;">Plan du site</a>
+               <a href="international.html" style="color:#000000;">International</a>
+               <a href="aide.html" style="color:#000000;">Aide</a>
+               <a href="abonnements.html" style="color:#000000;">Abonnements</a>
+            </div>
+         </div>
+      </footer>
+<script>
+    // DATE
+function setDate(){
+    document.getElementById('date').textContent = new Date().toLocaleDateString('fr-FR',{
+        weekday:'long', year:'numeric', month:'long', day:'numeric'
+    });
+}
+setDate();
+
+// FULLSCREEN MENU TOGGLE
+document.querySelector(".menu-toggle").onclick = ()=>{document.getElementById("fullscreenMenu").classList.add("active");};
+document.querySelector(".close-menu").onclick = ()=>{document.getElementById("fullscreenMenu").classList.remove("active");};
+
+// SEARCH IN MENU
+const searchForm = document.getElementById("searchForm");
+const searchInput = document.getElementById("searchInput");
+const searchResults = document.getElementById("searchResults");
+searchForm.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if(!query) return;
+    searchResults.innerHTML = "<p>Recherche en cours...</p>";
+    // ici tu peux ajouter ton fetch API pour les résultats
+});
+</script>
+      <!-- BOUTON FLOTTANT SHARE -->
+<div id="share-fab">
+  <img src="https://cdn-icons-png.flaticon.com/512/2990/2990295.png" alt="Partager">
+</div>
+<!-- MODAL PREMIUM -->
+<div id="share-modal">
+  <div class="share-content">
+    <span class="close" onclick="closeShare()">✕</span>
+    <h3>Partager cette page</h3>
+    <div class="share-buttons">
+      <a href="#" id="share-facebook" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+      <a href="#" id="share-twitter" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+      <a href="#" id="share-whatsapp" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
+      <a href="#" id="share-telegram" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"></a>
+      <a href="#" id="share-messenger" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Messenger"></a>
+      <a href="#" id="share-email" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email"></a>
+      <button id="copy-link">Copier le lien</button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* BOUTON FLOTTANT */
+#share-fab {
+  position: fixed;
+  right: 15px;
+  bottom: 10px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+#share-fab img {
+  width: 60%;
+  height: 60%;
+}
+#share-fab:hover {
+  transform: scale(1.1);
+}
+
+/* MODAL */
+#share-modal {
+  display: none;
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  backdrop-filter: blur(5px);
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  justify-content: center;
+  align-items: flex-start; /* slide down effect */
+  overflow-y: auto;
+}
+.share-content {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 15px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  margin-top: -300px; /* hidden above */
+  opacity: 0;
+  transform: translateY(-100px);
+  transition: all 0.5s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+#share-modal.active .share-content {
+  margin-top: 50px;
+  opacity: 1;
+  transform: translateY(0);
+}
+.share-content h3 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+.share-content .close {
+  position: absolute;
+  top: 12px; right: 18px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+.share-buttons a, .share-buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: #f0f0f0;
+  border-radius: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.share-buttons a img {
+  width: 28px;
+  height: 28px;
+}
+.share-buttons a:hover, .share-buttons button:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  background: #e0e0e0;
+}
+#copy-link {
+  font-size: 0.85rem;
+  font-weight: bold;
+  background: #007bff;
+  color: #fff;
+}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+  #share-fab {
+    width: 35px;
+    height: 35px;
+  }
+  .share-buttons a, .share-buttons button {
+    width: 45px;
+    height: 45px;
+  }
+  .share-buttons a img {
+    width: 24px;
+    height: 24px;
+  }
+}
+</style>
+
+<script>
+var pageUrl = encodeURIComponent(window.location.href);
+var pageTitle = encodeURIComponent(document.title);
+
+// Ouvrir / fermer modal avec slide down
+document.getElementById("share-fab").onclick = function() {
+  var modal = document.getElementById("share-modal");
+  modal.style.display = "flex";
+  setTimeout(function(){ modal.classList.add("active"); }, 10);
+}
+function closeShare() {
+  var modal = document.getElementById("share-modal");
+  modal.classList.remove("active");
+  setTimeout(function(){ modal.style.display = "none"; }, 500);
+}
+
+// Liens réseaux
+document.getElementById("share-facebook").href = "https://www.facebook.com/sharer/sharer.php?u="+pageUrl;
+document.getElementById("share-twitter").href = "https://twitter.com/intent/tweet?url="+pageUrl+"&text="+pageTitle;
+document.getElementById("share-whatsapp").href = "https://api.whatsapp.com/send?text="+pageTitle+" "+pageUrl;
+document.getElementById("share-telegram").href = "https://t.me/share/url?url="+pageUrl+"&text="+pageTitle;
+document.getElementById("share-messenger").href = "fb-messenger://share?link="+pageUrl;
+document.getElementById("share-email").href = "mailto:?subject="+pageTitle+"&body="+pageUrl;
+
+// Copier le lien
+document.getElementById("copy-link").onclick = function() {
+  navigator.clipboard.writeText(window.location.href).then(function(){
+    alert("Lien copié !");
+  });
+}
+</script>
+
+<script>
+const carousel = document.querySelector('.lifestyle-carousel');
+const prevBtn = document.querySelector('.carousel-btn.prev');
+const nextBtn = document.querySelector('.carousel-btn.next');
+
+function scrollCarousel(direction) {
+  const card = carousel.querySelector('.lifestyle-card');
+  if (!card) return;
+  const gap = parseInt(getComputedStyle(carousel).gap) || 24;
+  const cardWidth = card.offsetWidth + gap;
+
+  carousel.scrollBy({
+    left: direction === 'next' ? cardWidth : -cardWidth,
+    behavior: 'smooth'
+  });
+}
+
+nextBtn.addEventListener('click', () => scrollCarousel('next'));
+prevBtn.addEventListener('click', () => scrollCarousel('prev'));
+</script>
+</body>
+</html>
