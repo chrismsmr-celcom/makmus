@@ -4,6 +4,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="google-adsense-account" content="ca-pub-7567982675325882">
+      <meta name="description" content="MAKMUS – Actualités factuelles, vérifiées et accessibles. Politique, économie, RDC, météo, sport et culture.">
       <title>MAKMUS — Mémoire & Vérité</title>
       <!-- TYPO -->
 <link href="https://fonts.googleapis.com/css2?
@@ -476,6 +477,177 @@ family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap
   }
 
 }
+/* ===== NORMALISATION ARRONDIS ===== */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+/* ===== CONTAINERS CENTRÉS ===== */
+header,
+.date-bar,
+.hero-wrapper,
+.news-section,
+.category-page,
+.une,
+.video-section,
+.breaking,
+footer {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* HEADER */
+header {
+  justify-content: space-between;
+}
+
+/* NAV */
+nav ul {
+  justify-content: center;
+}
+
+/* DATE */
+.date-bar {
+  text-align: center;
+}
+
+/* HERO */
+.hero-wrapper {
+  align-items: center;
+}
+
+.hero {
+  text-align: center;
+}
+
+.hero img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* HERO SIDE */
+.side-articles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* SECTIONS */
+.section-header {
+  justify-content: center;
+}
+
+.section-header h2 {
+  text-align: center;
+}
+
+.section-line {
+  display: none;
+}
+
+/* CATEGORY GRID */
+.category-grid {
+  justify-content: center;
+}
+
+.category-article {
+  text-align: center;
+}
+
+.category-article img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* UNE */
+.une-container {
+  align-items: center;
+}
+
+.une-content {
+  text-align: center;
+}
+
+.une-image {
+  display: flex;
+  justify-content: center;
+}
+
+/* VIDEO */
+.video-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* BREAKING NEWS */
+.breaking {
+  justify-content: center;
+  text-align: center;
+}
+
+/* FOOTER */
+footer div {
+  justify-content: center;
+  text-align: center;
+}
+
+/* FULLSCREEN MENU */
+.fullscreen-menu ul {
+  padding: 0;
+}
+
+.fullscreen-menu li {
+  text-align: center;
+}
+
+/* SEARCH */
+.fullscreen-menu form {
+  justify-content: center;
+}
+
+/* CAROUSEL */
+.lifestyle-carousel-wrapper {
+  justify-content: center;
+}
+
+.lifestyle-carousel {
+  justify-content: center;
+}
+
+/* SHARE MODAL */
+.share-content {
+  border-radius: 0 !important;
+}
+
+/* BOUTON SHARE */
+#share-fab {
+  border-radius: 0 !important;
+}
+/* ===== SÉPARATION PRESSE ENTRE SECTIONS ===== */
+.hero-wrapper,
+.video-section,
+.category-page,
+.une,
+.breaking {
+  border-top: 1px solid #ddd;
+}
+
+.hero-wrapper:first-of-type {
+  border-top: none;
+}
+
+/* Espacement vertical élégant */
+.hero-wrapper,
+.video-section,
+.category-page,
+.une {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
       </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7567982675325882"
      crossorigin="anonymous"></script>
@@ -521,7 +693,7 @@ family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap
       <section class="hero-wrapper">
          <div class="hero">
             <h1 id="hero-title"></h1>
-            <img id="hero-img" src="" alt="">
+            <img id="hero-img" src="" alt="" loading="lazy">
             <p id="hero-desc"></p>
             <a id="hero-link" href="#">Lire la suite</a>
          </div>
@@ -544,9 +716,9 @@ family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap
          <h1>Actualités</h1>
       </header>
       <div class="category-grid" id="category-grid"></div>
-      </section
-      
-        <section class="une">
+      </section>
+
+<section class="une">
   <div class="une-container">
 
     <div class="une-image">
@@ -571,17 +743,36 @@ family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap
         conséquences géopolitiques majeures qui divisent la communauté internationale.
       </p>
 
-      <a href="article-venezuela.html" class="read-more">Lire l’article complète →</a>
+      <a href="article-venezuela.html" class="read-more">Lire l’analyse complète →</a>
     </div>
 
   </div>
 </section>
+       
+   <!-- SECTION UNE SIMPLIFIÉE -->
+<div class="une">
+  <div class="une-container">
+    <!-- IMAGE -->
+    <div class="une-image">
+      <img src="https://static01.nyt.com/images/2026/01/04/multimedia/04us-venezuela-trump-threats-bvmt/04us-venezuela-trump-threats-bvmt-jumbo.jpg?quality=75&auto=webp" alt="Trump Air Force One">
+    </div>
 
+    <!-- CONTENU -->
+    <div class="une-content">
+      <div class="badge">International</div>
+      <h1>Trump suggère que les États‑Unis pourraient agir contre plusieurs pays</h1>
+
+      <p>Washington, 5 janvier 2026 – Donald Trump a laissé entendre que les États-Unis pourraient intervenir contre plusieurs pays, dont la Colombie et Cuba, tout en réaffirmant son intérêt stratégique pour le Groenland. Ces propos surviennent après l’opération américaine au Venezuela et ont suscité des réactions internationales.</p>
+
+      <a href="article-trump-monde.html" class="read-more">Lire la suite</a>
+    </div>
+  </div>
+</div>
+       
       <section class="category-page" id="category-actu">
       <header class="category-header">
          <h1>Lifestyle & bien-être</h1>
       </header>
-      <div class="category-grid" id="category-grid"></div>
 
   <p class="disclaimer top-disclaimer">
   </p>
@@ -592,7 +783,7 @@ family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap
     <div class="lifestyle-carousel">
       <!-- Carte 1 -->
       <a href="lifestyle-sante-mentale.html" class="lifestyle-card">
-        <img src="https://plus.unsplash.com/premium_vector-1729252566432-f498060ce597?w=1800.png" alt="Santé mentale">
+        <img src="https://plus.unsplash.com/premium_vector-1729252566432-f498060ce597?w=1800.png" alt="Santé mentale" loading="lazy">
         <div class="overlay">
           <span class="badge">Conseils d’experts</span>
           <h3>Santé mentale</h3>
@@ -600,7 +791,7 @@ family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap
       </a>
       <!-- Carte 2 -->
       <a href="lifestyle-relaxation.html" class="lifestyle-card">
-        <img src="https://plus.unsplash.com/premium_vector-1682300543534-e9cd1fb8cc92?w=1800.png" alt="Relaxation">
+        <img src="https://plus.unsplash.com/premium_vector-1682300543534-e9cd1fb8cc92?w=1800.png" alt="Relaxation" loading="lazy">
         <div class="overlay">
           <span class="badge">Bien-être</span>
           <h3>Relaxation</h3>
@@ -608,7 +799,7 @@ family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap
       </a>
       <!-- Carte 3 -->
       <a href="lifestyle-sport.html" class="lifestyle-card">
-        <img src="https://plus.unsplash.com/premium_vector-1712741923360-25639b9732de?w=1800.png" alt="Sport">
+        <img src="https://plus.unsplash.com/premium_vector-1712741923360-25639b9732de?w=1800.png" alt="Sport" loading="lazy">
         <div class="overlay">
           <span class="badge">Santé & forme</span>
           <h3>Sport</h3>
@@ -616,7 +807,7 @@ family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap
       </a>
       <!-- Carte 4 -->
       <a href="lifestyle-nutrition.html" class="lifestyle-card">
-        <img src="https://plus.unsplash.com/premium_vector-1737041400403-d2deca76c460?w=1800.png" alt="Nutrition">
+        <img src="https://plus.unsplash.com/premium_vector-1737041400403-d2deca76c460?w=1800.png" alt="Nutrition" loading="lazy">
         <div class="overlay">
           <span class="badge">Sources fiables</span>
           <h3>Nutrition</h3>
@@ -638,115 +829,335 @@ family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap
       <div class="breaking" id="breaking-list"></div>
        
       <script>
-         const API_KEY="pub_1ea29e57ce7b48fb8cfecae994edc791";
-         const CACHE_DURATION=2*60*60*1000;
-         
-         // DATE
-         function setDate(){document.getElementById('date').textContent=new Date().toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});}
-         setDate();
-         
-         // FETCH AVEC CACHE
-         async function fetchNewsWithCache(cacheKey,url){
-           const cachedData=localStorage.getItem(cacheKey);
-           const cachedTime=localStorage.getItem(cacheKey+"_time");
-           if(cachedData && cachedTime && (Date.now()-cachedTime<CACHE_DURATION)) return JSON.parse(cachedData);
-           try{
-             const response=await fetch(url);
-             const data=await response.json();
-             localStorage.setItem(cacheKey,JSON.stringify(data));
-             localStorage.setItem(cacheKey+"_time",Date.now());
-             return data;
-           }catch(e){return cachedData?JSON.parse(cachedData):{results:[]};}
-         }
-         
-         // HERO
-         async function loadHero(){
-           const data=await fetchNewsWithCache("hero",`https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr`);
-           const results=Array.isArray(data.results)?data.results:[];
-           if(!results.length) return;
-           const hero=results[0];
-           const heroTitle=document.getElementById("hero-title");
-           const heroImg=document.getElementById("hero-img");
-           const heroDesc=document.getElementById("hero-desc");
-           const heroLink=document.getElementById("hero-link");
-           const heroSide=document.getElementById("hero-side");
-           if(heroTitle) heroTitle.textContent=hero.title||"";
-           if(heroImg){ heroImg.src=hero.image_url||""; heroImg.alt=hero.title||""; }
-           if(heroDesc) heroDesc.textContent=hero.description||"";
-           if(heroLink) heroLink.href=hero.link||"#";
-           if(heroSide){ heroSide.innerHTML=""; results.slice(1,4).forEach(a=>{const el=document.createElement("article"); el.innerHTML=`<h3>${a.title}</h3>`; heroSide.appendChild(el);}); }
-         }
-         
-         // SECTION
-         async function loadSection(category,containerSelector){
-           const data=await fetchNewsWithCache(category,`https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr&category=${category}`);
-           const results=Array.isArray(data.results)?data.results:[];
-           if(!results.length) return;
-           const container=document.querySelector(containerSelector);
-           if(!container) return;
-           const mainArticle=container.querySelector(".main-article");
-           const sideList=container.querySelector(".side-list");
-           if(mainArticle){
-             mainArticle.querySelector("img").src=results[0].image_url||"";
-             mainArticle.querySelector("img").alt=results[0].title||"";
-             mainArticle.querySelector("h3").textContent=results[0].title||"";
-             mainArticle.querySelector("p").textContent=results[0].description||"";
-             mainArticle.querySelector("a").href=results[0].link||"#";
-           }
-           if(sideList){ sideList.innerHTML=""; results.slice(1,4).forEach(a=>{const el=document.createElement("article"); el.innerHTML=`<h4>${a.title}</h4>`; sideList.appendChild(el);}); }
-         }
-         
-         // CATEGORY GRID
-         async function loadCategory(category,containerId,limit=24){
-           const data=await fetchNewsWithCache(`cat_${category}`,`https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr&category=${category}`);
-           const results=Array.isArray(data.results)?data.results:[];
-           const grid=document.getElementById(containerId);
-           if(!grid) return; grid.innerHTML="";
-           results.slice(0,limit).forEach(article=>{
-             if(!article.title||!article.image_url) return;
-             const el=document.createElement("article");
-             el.className="category-article";
-             el.innerHTML=`<img src="${article.image_url}" alt="${article.title}" loading="lazy"><h3>${article.title}</h3><p>${article.description||""}</p><a href="${article.link}" target="_blank">Lire la suite</a>`;
-             grid.appendChild(el);
-           });
-         }
-         
-         // BREAKING NEWS
-         async function loadBreaking(){
-           const data=await fetchNewsWithCache("breaking_news",`https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr`);
-           const results=Array.isArray(data.results)?data.results:[];
-           const container=document.getElementById("breaking-list"); if(!container) return; container.innerHTML="";
-           results.slice(4,12).forEach(a=>{if(!a.title||!a.link) return; const el=document.createElement("a"); el.href=a.link; el.target="_blank"; el.textContent=a.title; container.appendChild(el);});
-         }
-         
-         // FULLSCREEN MENU TOGGLE
-         document.querySelector(".menu-toggle").onclick=()=>{document.getElementById("fullscreenMenu").classList.add("active");};
-         document.querySelector(".close-menu").onclick=()=>{document.getElementById("fullscreenMenu").classList.remove("active");};
-         
-         // SEARCH IN MENU
-         const searchForm=document.getElementById("searchForm");
-         const searchInput=document.getElementById("searchInput");
-         const searchResults=document.getElementById("searchResults");
-         searchForm.addEventListener("submit", async (e)=>{
-           e.preventDefault();
-           const query=searchInput.value.trim(); if(!query) return;
-           searchResults.innerHTML="<p>Recherche en cours...</p>";
-           try{
-             const res=await fetch(`https://newsdata.io/api/1/news?apikey=${API_KEY}&q=${encodeURIComponent(query)}&language=fr`);
-             const data=await res.json();
-             const results=Array.isArray(data.results)?data.results:[];
-             if(!results.length){ searchResults.innerHTML="<p>Aucun résultat trouvé.</p>"; return; }
-             searchResults.innerHTML="";
-             results.slice(0,10).forEach(article=>{ const el=document.createElement("div"); el.style.marginBottom="1rem"; el.innerHTML=`<a href="${article.link}" target="_blank">${article.title}</a>`; searchResults.appendChild(el);});
-           }catch(err){ console.error(err); searchResults.innerHTML="<p>Erreur lors de la recherche.</p>"; }
-         });
-         
-         // LOAD ALL
-         loadHero();
-         loadSection("politics","#politics");
-         loadCategory("politics","category-grid",24);
-         loadBreaking();
-      </script>
+const API_KEY = "pub_1ea29e57ce7b48fb8cfecae994edc791";
+const CACHE_DURATION = 2 * 60 * 60 * 1000; // 2h
+
+/* =========================
+   DATE
+========================= */
+function setDate(){
+  const el = document.getElementById('date');
+  if(!el) return;
+  el.textContent = new Date().toLocaleDateString('fr-FR',{
+    weekday:'long',
+    year:'numeric',
+    month:'long',
+    day:'numeric'
+  });
+}
+setDate();
+
+/* =========================
+   SIMPLIFICATION CONTENU
+========================= */
+function simplifyContent(text, maxLength = 200) {
+  if (!text) return "";
+
+  const clean = text
+    .replace(/<[^>]*>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (clean.length <= maxLength) return clean;
+
+  return clean.substring(0, clean.lastIndexOf(" ", maxLength)) + "…";
+}
+
+/* =========================
+   FETCH AVEC CACHE
+========================= */
+async function fetchNewsWithCache(cacheKey, url){
+  const cachedData = localStorage.getItem(cacheKey);
+  const cachedTime = localStorage.getItem(cacheKey + "_time");
+
+  if(cachedData && cachedTime && (Date.now() - cachedTime < CACHE_DURATION)){
+    return JSON.parse(cachedData);
+  }
+
+  try{
+    const res = await fetch(url);
+    const data = await res.json();
+    localStorage.setItem(cacheKey, JSON.stringify(data));
+    localStorage.setItem(cacheKey + "_time", Date.now());
+    return data;
+  }catch(e){
+    console.error("Erreur fetch:", e);
+    return cachedData ? JSON.parse(cachedData) : { results: [] };
+  }
+}
+
+/* =========================
+   HERO (Breaking > World > RDC)
+========================= */
+async function loadHero(){
+  let results = [];
+
+  let breaking = await fetchNewsWithCache(
+    "hero_breaking",
+    `https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr&category=breaking`
+  );
+  if(Array.isArray(breaking.results)) results = breaking.results;
+
+  if(results.length < 1){
+    let intl = await fetchNewsWithCache(
+      "hero_world",
+      `https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr&category=world`
+    );
+    results = Array.isArray(intl.results) ? intl.results : [];
+  }
+
+  if(results.length < 1){
+    let rdc = await fetchNewsWithCache(
+      "hero_rdc",
+      `https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr&q=RDC`
+    );
+    results = Array.isArray(rdc.results) ? rdc.results : [];
+  }
+
+  if(!results.length) return;
+
+  const hero = results[0];
+
+  const heroTitle = document.getElementById("hero-title");
+  const heroImg   = document.getElementById("hero-img");
+  const heroDesc  = document.getElementById("hero-desc");
+  const heroLink  = document.getElementById("hero-link");
+  const heroSide  = document.getElementById("hero-side");
+
+  if(heroTitle) heroTitle.textContent = hero.title || "Titre indisponible";
+
+  if(heroImg){
+    heroImg.src = hero.image_url || "";
+    heroImg.alt = hero.title || "";
+  }
+
+  if(heroDesc){
+    heroDesc.textContent = simplifyContent(
+      hero.description || hero.content || "",
+      180
+    );
+  }
+
+  if(heroLink){
+    heroLink.href = hero.link || "#";
+  }
+
+  if(heroSide){
+    heroSide.innerHTML = "";
+    results.slice(1,4).forEach(a=>{
+      if(!a.title) return;
+      const el = document.createElement("article");
+      el.innerHTML = `<h3>${a.title}</h3>`;
+      heroSide.appendChild(el);
+    });
+  }
+}
+
+/* =========================
+   BREAKING (titres only)
+========================= */
+async function loadBreaking(){
+  let results = [];
+
+  let breaking = await fetchNewsWithCache(
+    "breaking_news",
+    `https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr&category=breaking`
+  );
+  if(Array.isArray(breaking.results)) results = breaking.results;
+
+  if(results.length < 12){
+    let intl = await fetchNewsWithCache(
+      "breaking_world",
+      `https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr&category=world`
+    );
+    if(Array.isArray(intl.results)) results = results.concat(intl.results);
+  }
+
+  if(results.length < 12){
+    let rdc = await fetchNewsWithCache(
+      "breaking_rdc",
+      `https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr&q=RDC`
+    );
+    if(Array.isArray(rdc.results)) results = results.concat(rdc.results);
+  }
+
+  const container = document.getElementById("breaking-list");
+  if(!container) return;
+  container.innerHTML = "";
+
+  results.slice(0,12).forEach(a=>{
+    if(!a.title || !a.link) return;
+    const el = document.createElement("a");
+    el.href = a.link;
+    el.target = "_blank";
+    el.textContent = a.title;
+    container.appendChild(el);
+  });
+}
+
+/* =========================
+   SECTIONS (Politique, etc.)
+========================= */
+async function loadSection(category, containerSelector){
+  let data = await fetchNewsWithCache(
+    category,
+    `https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr&category=${category}`
+  );
+
+  let results = Array.isArray(data.results) ? data.results : [];
+
+  if(results.length < 1){
+    const fallback = await fetchNewsWithCache(
+      category + "_fallback",
+      `https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr`
+    );
+    results = Array.isArray(fallback.results) ? fallback.results : [];
+  }
+
+  if(!results.length) return;
+
+  const container = document.querySelector(containerSelector);
+  if(!container) return;
+
+  const mainArticle = container.querySelector(".main-article");
+  const sideList = container.querySelector(".side-list");
+
+  if(mainArticle){
+    const img = mainArticle.querySelector("img");
+    const title = mainArticle.querySelector("h3");
+    const desc = mainArticle.querySelector("p");
+    const link = mainArticle.querySelector("a");
+
+    if(img){
+      img.src = results[0].image_url || "";
+      img.alt = results[0].title || "";
+    }
+
+    if(title) title.textContent = results[0].title || "";
+
+    if(desc){
+      desc.textContent = simplifyContent(
+        results[0].description || results[0].content || "",
+        160
+      );
+    }
+
+    if(link) link.href = results[0].link || "#";
+  }
+
+  if(sideList){
+    sideList.innerHTML = "";
+    results.slice(1,4).forEach(a=>{
+      if(!a.title) return;
+      const el = document.createElement("article");
+      el.innerHTML = `<h4>${a.title}</h4>`;
+      sideList.appendChild(el);
+    });
+  }
+}
+
+/* =========================
+   CATEGORY GRID
+========================= */
+async function loadCategory(category, containerId, limit=24){
+  let data = await fetchNewsWithCache(
+    `cat_${category}`,
+    `https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr&category=${category}`
+  );
+
+  let results = Array.isArray(data.results) ? data.results : [];
+
+  if(results.length < 1){
+    const fallback = await fetchNewsWithCache(
+      `cat_${category}_fallback`,
+      `https://newsdata.io/api/1/latest?apikey=${API_KEY}&language=fr`
+    );
+    results = Array.isArray(fallback.results) ? fallback.results : [];
+  }
+
+  const grid = document.getElementById(containerId);
+  if(!grid) return;
+  grid.innerHTML = "";
+
+  results.slice(0,limit).forEach(article=>{
+    if(!article.title || !article.image_url) return;
+
+    const el = document.createElement("article");
+    el.className = "category-article";
+    el.innerHTML = `
+      <img src="${article.image_url}" alt="${article.title}" loading="lazy">
+      <h3>${article.title}</h3>
+      <p>${simplifyContent(
+        article.description || article.content || "",
+        140
+      )}</p>
+      <a href="${article.link}" target="_blank">Lire la suite</a>
+    `;
+    grid.appendChild(el);
+  });
+}
+
+/* =========================
+   MENU FULLSCREEN
+========================= */
+document.querySelector(".menu-toggle")?.addEventListener("click", ()=>{
+  document.getElementById("fullscreenMenu")?.classList.add("active");
+});
+
+document.querySelector(".close-menu")?.addEventListener("click", ()=>{
+  document.getElementById("fullscreenMenu")?.classList.remove("active");
+});
+
+/* =========================
+   SEARCH (inchangé)
+========================= */
+const searchForm = document.getElementById("searchForm");
+const searchInput = document.getElementById("searchInput");
+const searchResults = document.getElementById("searchResults");
+
+if(searchForm){
+  searchForm.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if(!query) return;
+
+    searchResults.innerHTML = "<p>Recherche en cours...</p>";
+
+    try{
+      const res = await fetch(
+        `https://newsdata.io/api/1/news?apikey=${API_KEY}&q=${encodeURIComponent(query)}&language=fr`
+      );
+      const data = await res.json();
+      const results = Array.isArray(data.results) ? data.results : [];
+
+      if(!results.length){
+        searchResults.innerHTML = "<p>Aucun résultat trouvé.</p>";
+        return;
+      }
+
+      searchResults.innerHTML = "";
+      results.slice(0,10).forEach(article=>{
+        const el = document.createElement("div");
+        el.style.marginBottom = "1rem";
+        el.innerHTML = `<a href="${article.link}" target="_blank">${article.title}</a>`;
+        searchResults.appendChild(el);
+      });
+
+    }catch(err){
+      console.error(err);
+      searchResults.innerHTML = "<p>Erreur lors de la recherche.</p>";
+    }
+  });
+}
+
+/* =========================
+   LOAD ALL
+========================= */
+loadHero();
+loadBreaking();
+loadSection("politics", "#politics");
+loadCategory("politics", "category-grid", 24);
+</script>
       <!-- FOOTER -->
       <footer style="background:#D3D3D3;color:#000000;padding:2rem;font-size:0.85rem;font-family:'Inter',sans-serif;">
          <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;">
