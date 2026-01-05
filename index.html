@@ -358,6 +358,75 @@ family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap
     height: 220px;
   }
 }
+.une {
+  background: #fff;
+  padding: 40px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.une-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 30px;
+}
+
+.une-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.une-content .badge {
+  display: inline-block;
+  background: #c62828;
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.une-content h1 {
+  font-size: 32px;
+  margin: 10px 0;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 17px;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 15px;
+}
+
+.excerpt {
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.read-more {
+  font-weight: bold;
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+@media(max-width: 768px) {
+  .une-container {
+    grid-template-columns: 1fr;
+  }
+
+  .une-content h1 {
+    font-size: 26px;
+  }
+}
       </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7567982675325882"
      crossorigin="anonymous"></script>
@@ -427,7 +496,37 @@ family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap
       </header>
       <div class="category-grid" id="category-grid"></div>
       </section
+      
+        <section class="une">
+  <div class="une-container">
 
+    <div class="une-image">
+      <img src="https://dims.apnews.com/dims4/default/404beb8/2147483647/strip/true/crop/4844x3229+0+0/resize/1440x960!/format/webp/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fb3%2F4f%2F2ea8438ef6ed842bd3f9fc3cbdbe%2F270c90cc1c4c40cbaceaabbe40a0ca9f" alt="Caracas explosions">
+    </div>
+
+    <div class="une-content">
+      <span class="badge">À LA UNE</span>
+      <h1>Washington frappe et capture Maduro</h1>
+      <p class="subtitle">
+        Bombardements en mer des Caraïbes, opération Delta Force à Caracas,
+        exfiltration du président vénézuélien et prise de contrôle annoncée
+        par Washington : un tournant historique qui bouleverse l’Amérique latine
+        et interroge l’ordre mondial.
+      </p>
+
+      <p class="excerpt">
+        Le samedi 3 janvier à 2h01, la capitale vénézuélienne est secouée par
+        de violentes explosions. Quelques heures plus tard, les États-Unis
+        confirment la capture de Nicolás Maduro. Derrière cette opération,
+        une justification officielle liée au narcotrafic, mais aussi des
+        conséquences géopolitiques majeures qui divisent la communauté internationale.
+      </p>
+
+      <a href="article-venezuela.html" class="read-more">Lire l’analyse complète →</a>
+    </div>
+
+  </div>
+</section>
 
       <section class="category-page" id="category-actu">
       <header class="category-header">
