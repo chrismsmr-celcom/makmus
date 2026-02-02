@@ -7,34 +7,38 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 
-// --- FONCTION DE RÉDACTION VIRTUELLE (IA) ---
-async function rewriteWithIA(title, description) {
-    // Si tu n'as pas encore de clé IA, on renvoie le titre original
-    if (!process.env.GEMINI_API_KEY) return title;
+// --- FONCTION DE RÉDACTION AVEC OPENAI ---
+async function rewriteWithOpenAI(title) {
+    if (!process.env.OPENAI_API_KEY) return title;
 
     try {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
-        
-        const prompt = {
-            "contents": [{
-                "parts": [{
-                    "text": `Tu es le rédacteur en chef de MAKMUS, un journal prestigieux. 
-                    Réécris ce titre d'actualité pour qu'il soit percutant, sérieux et élégant (style New York Times). 
-                    Ne réponds QUE le nouveau titre, sans guillemets.
-                    Titre original : ${title}`
-                }]
-            }]
-        };
+        const response = await axios.post(
+            'https://api.openai.com/v1/chat/completions',
+            {
+                model: "gpt-4o-mini",
+                messages: [
+                    { role: "system", content: "Tu es le rédacteur en chef du journal MAKMUS. Réécris ce titre pour qu'il soit élégant, percutant et journalistique (style NYT). Réponds uniquement avec le nouveau titre en français." },
+                    { role: "user", content: title }
+                ],
+                max_tokens: 50,
+                temperature: 0.7
+            },
+            {
+                headers: {
+                    'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+                    'Content-Type': 'application/json'
+                },
+                timeout: 5000
+            }
+        );
 
-        const response = await axios.post(url, prompt);
-        return response.data.candidates[0].content.parts[0].text.trim();
+        return response.data.choices[0].message.content.trim();
     } catch (error) {
-        console.error("L'IA est fatiguée, on garde le titre original.");
-        return title;
+        console.error("OpenAI Error:", error.response ? error.response.data : error.message);
+        return title; // Retour au titre original si l'IA échoue
     }
 }
 
-// --- ROUTE API AVEC TRANSFORMATION ---
 app.get('/api/news', async (req, res) => {
     try {
         const category = req.query.category || 'top';
@@ -46,22 +50,20 @@ app.get('/api/news', async (req, res) => {
         if (category && category !== 'top') url += `&category=${category}`;
 
         const response = await axios.get(url);
-        const articles = response.data.results;
+        let articles = response.data.results || [];
 
-        // On fait réécrire les 5 premiers titres par l'IA (pour la Une)
-        const transformedArticles = await Promise.all(articles.map(async (art, index) => {
-            if (index < 5) {
-                art.title = await rewriteWithIA(art.title);
-            }
-            return art;
-        }));
+        // On réécrit les 5 premiers articles pour donner du cachet à la Une
+        for (let i = 0; i < Math.min(articles.length, 5); i++) {
+            articles[i].title = await rewriteWithOpenAI(articles[i].title);
+        }
 
-        res.json({ results: transformedArticles });
+        res.json({ results: articles });
     } catch (error) {
-        res.status(500).json({ error: "Erreur serveur" });
+        console.error("NewsAPI Error:", error.message);
+        res.status(500).json({ results: [], error: "Erreur lors de la récupération des news" });
     }
 });
 
 app.listen(PORT, () => {
-    console.log(`MAKMUS tourne sur le port ${PORT}`);
+    console.log(`MAKMUS actif sur le port ${PORT}`);
 });
