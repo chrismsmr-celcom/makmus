@@ -4,21 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAKMUS — Mémoire & Vérité</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="top-nav">
-        <div class="nav-left">
-            <span id="live-clock">--:--:--</span>
-        </div>
+        <div class="nav-left"><span id="live-clock">--:--:--</span></div>
         <div class="account-links">
             <div class="account-trigger" id="openModal">
-                <svg class="icon-user" viewBox="0 0 24 24" width="18" height="18"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="currentColor"/></svg>
-                <span>Compte</span>
+                <span>MON COMPTE</span>
             </div>
         </div>
     </div>
@@ -31,117 +26,101 @@
 
     <nav class="main-nav">
         <ul>
-            <li><a href="index.html">À la une</a></li>
-            <li><a href="rdc.html">RDC</a></li>
-            <li><a href="afrique.html">Afrique</a></li>
-            <li><a href="politique.html">Politique</a></li>
-            <li><a href="economie.html">Économie</a></li>
-            <li><a href="guerre.html">Guerre</a></li>
-            <li><a href="sport.html">Sport</a></li>
+            <li><a href="index.html" class="active">À LA UNE</a></li>
+            <li><a href="#" onclick="loadCategory('world', 'RDC')">RDC</a></li>
+            <li><a href="#" onclick="loadCategory('politics')">POLITIQUE</a></li>
+            <li><a href="#" onclick="loadCategory('business')">ÉCONOMIE</a></li>
+            <li><a href="#" onclick="loadCategory('sports')">SPORT</a></li>
             <li><a href="jeux.html" style="color: #a30000;">JEUX</a></li>
         </ul>
     </nav>
 
     <main class="page-container">
         <div class="date-bar" id="current-date">Chargement...</div>
-
-        <div id="error-message" style="display:none; color:red; text-align:center; padding:20px; border:1px solid red; margin-bottom:20px;"></div>
+        
+        <div id="status-msg" style="display:none; text-align:center; padding:10px; background:#fff5f5; color:#c00; border:1px solid #c00; margin-bottom:20px;"></div>
 
         <section id="hero-section"></section>
 
         <div class="category-grid" id="news-grid">
-            <p style="text-align:center; grid-column: 1/-1;">Recherche des dernières actualités...</p>
+            <p style="text-align:center; grid-column: 1/-1;">Mise à jour des dépêches en cours...</p>
         </div>
     </main>
 
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-content">
-            <span class="modal-close" id="closeModal">&times;</span>
-            <h2>MAKMUS</h2>
-            <p>Connectez-vous pour accéder à vos archives.</p>
-            <form style="margin-top:20px;">
-                <input type="email" placeholder="Email" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd;">
-                <input type="password" placeholder="Mot de passe" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd;">
-                <button type="button" class="btn-sub" style="width:100%; border:none; cursor:pointer; padding:10px;">SE CONNECTER</button>
-            </form>
-        </div>
-    </div>
-
     <script>
-        /* --- CONFIGURATION --- */
-        const API_ENDPOINT = '/api/news'; // Chemin relatif vers ton serveur Node
-
-        // Horloge et Date
-        function updateUI() {
+        // Mise à jour de l'heure
+        function updateClock() {
             const now = new Date();
+            document.getElementById('live-clock').textContent = now.toLocaleTimeString('fr-FR');
             document.getElementById('current-date').textContent = now.toLocaleDateString('fr-FR', {
                 weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-            });
-            document.getElementById('live-clock').textContent = now.toLocaleTimeString('fr-FR');
+            }).toUpperCase();
         }
-        setInterval(updateUI, 1000);
-        updateUI();
+        setInterval(updateClock, 1000);
+        updateClock();
 
-        /* --- RÉCUPÉRATION DES DONNÉES --- */
-        async function loadNews() {
-            const heroContainer = document.getElementById('hero-section');
-            const gridContainer = document.getElementById('news-grid');
-            const errorBox = document.getElementById('error-message');
+        // Fonction principale de chargement
+        async function fetchArticles(category = 'top', query = '') {
+            const hero = document.getElementById('hero-section');
+            const grid = document.getElementById('news-grid');
+            const status = document.getElementById('status-msg');
 
             try {
-                const response = await fetch(`${API_ENDPOINT}?category=top`);
-                
-                if (!response.ok) throw new Error(`Erreur serveur: ${response.status}`);
-                
+                status.style.display = "none";
+                // Appel au backend (chemin relatif)
+                let url = `/api/news?category=${category}`;
+                if(query) url += `&q=${query}`;
+
+                const response = await fetch(url);
                 const data = await response.json();
                 const articles = data.results || [];
 
                 if (articles.length === 0) {
-                    gridContainer.innerHTML = "<p>Aucun article trouvé pour le moment.</p>";
+                    grid.innerHTML = "<p>Aucune information disponible pour cette rubrique.</p>";
                     return;
                 }
 
-                // 1. Remplir le HERO (1er article)
+                // Affichage du premier article (Hero)
                 const first = articles[0];
-                heroContainer.innerHTML = `
-                    <div class="hero" style="margin-bottom:40px; border-bottom:1px solid #ddd; padding-bottom:20px;">
-                        <h1 style="font-family:'Libre Baskerville'; font-size:2.5rem; text-align:center; margin-bottom:15px;">${first.title}</h1>
-                        ${first.image_url ? `<img src="${first.image_url}" style="width:100%; max-height:500px; object-fit:cover; margin-bottom:15px;">` : ''}
-                        <p style="font-size:1.1rem; line-height:1.6; color:#333;">${first.description || "Consultez l'article complet pour plus de détails."}</p>
-                        <a href="${first.link}" target="_blank" class="read-more" style="display:inline-block; margin-top:10px; font-weight:bold; color:#a30000;">LIRE LA SUITE →</a>
+                hero.innerHTML = `
+                    <div class="hero-article" style="cursor:pointer;" onclick="window.open('${first.link}', '_blank')">
+                        <h1 style="font-size: 2.8rem; line-height: 1.1; margin-bottom: 20px;">${first.title}</h1>
+                        <div style="display: flex; gap: 20px; align-items: start;">
+                            ${first.image_url ? `<img src="${first.image_url}" style="width: 65%; max-height: 450px; object-fit: cover;">` : ''}
+                            <p style="font-size: 1.2rem; line-height: 1.5;">${first.description || "Détails à suivre dans nos prochaines éditions."}</p>
+                        </div>
+                        <hr style="margin: 30px 0; border: 0; border-top: 1px solid #000;">
                     </div>
                 `;
 
-                // 2. Remplir la GRILLE (les autres)
-                gridContainer.innerHTML = "";
-                articles.slice(1).forEach(art => {
+                // Affichage de la suite dans la grille
+                grid.innerHTML = "";
+                articles.slice(1, 10).forEach(art => {
                     const card = document.createElement('div');
                     card.className = 'article-card';
-                    card.style = "border-bottom:1px solid #eee; padding-bottom:15px;";
+                    card.style.cursor = "pointer";
+                    card.onclick = () => window.open(art.link, '_blank');
                     card.innerHTML = `
-                        ${art.image_url ? `<img src="${art.image_url}" style="width:100%; height:150px; object-fit:cover; margin-bottom:10px;">` : ''}
-                        <h2 style="font-family:'Libre Baskerville'; font-size:1.1rem; margin-bottom:8px;">${art.title}</h2>
-                        <a href="${art.link}" target="_blank" style="font-size:0.8rem; font-weight:bold; color:#666;">LIRE L'ARTICLE</a>
+                        ${art.image_url ? `<img src="${art.image_url}" style="width:100%; height:180px; object-fit:cover; margin-bottom:10px;">` : ''}
+                        <h3 style="font-family:'Libre Baskerville'; font-size:1.1rem; border-top:1px solid #eee; pt:10px;">${art.title}</h3>
                     `;
-                    gridContainer.appendChild(card);
+                    grid.appendChild(card);
                 });
 
             } catch (err) {
+                status.style.display = "block";
+                status.textContent = "Erreur de connexion avec le serveur MAKMUS.";
                 console.error(err);
-                errorBox.style.display = "block";
-                errorBox.textContent = "Impossible de charger les actualités. Vérifiez la console Render ou votre clé API.";
-                gridContainer.innerHTML = "";
             }
         }
 
-        // Gestion Modal
-        const modal = document.getElementById('modalOverlay');
-        document.getElementById('openModal').onclick = () => modal.classList.add('active');
-        document.getElementById('closeModal').onclick = () => modal.classList.remove('active');
-        window.onclick = (e) => { if (e.target == modal) modal.classList.remove('active'); }
+        // Charger une catégorie spécifique
+        function loadCategory(cat, q = '') {
+            fetchArticles(cat, q);
+        }
 
-        // Lancer au démarrage
-        window.onload = loadNews;
+        // Au chargement initial
+        window.onload = () => fetchArticles('top');
     </script>
 </body>
 </html>
